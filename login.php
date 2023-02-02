@@ -270,7 +270,7 @@
                 <h1>Create Booklet!</h1>
                 <input type="text" placeholder="Name" />
                 <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="Registration Number" />
                 <button>Sign Up</button>
             </form>
         </div>
@@ -287,7 +287,7 @@
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
-                    <p>To Update Your Booklet<br> Sign in here :)</p>
+                    <p>To Update Your Booklet<br> Sign in here</p>
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
