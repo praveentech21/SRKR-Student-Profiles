@@ -251,7 +251,9 @@
             <div class="multisteps-form__progress">
               <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">Basic Info</button>
               <button class="multisteps-form__progress-btn" type="button" title="Address">Address</button>
-              <button class="multisteps-form__progress-btn" type="button" title="Order Info">Order Info</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Order Info">Personal Info</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Comments">Comments        </button>
+              <button class="multisteps-form__progress-btn" type="button" title="Comments">Comments        </button>
               <button class="multisteps-form__progress-btn" type="button" title="Comments">Comments        </button>
             </div>
           </div>
@@ -322,30 +324,84 @@
                 <div class="multisteps-form__content">
                   <div class="form-row mt-4">
                     <div class="col">
-                      <input class="multisteps-form__input form-control" type="text" placeholder="Door/Flat no :"/>
+                      <input class="multisteps-form__input form-control" type="text" placeholder="Door no, FLat name,Street :"/>
                     </div>
                   </div>
                   <div class="form-row mt-4">
                     <div class="col">
-                      <input class="multisteps-form__input form-control" type="text" placeholder="Address 2"/>
+                      <input class="multisteps-form__input form-control" type="text" placeholder="Place"/>
                     </div>
                   </div>
                   <div class="form-row mt-4">
                     <div class="col-12 col-sm-6">
-                      <input class="multisteps-form__input form-control" type="text" placeholder="City"/>
+                      <input class="multisteps-form__input form-control" type="text" placeholder="District"/>
                     </div>
                     <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                      <select class="multisteps-form__select form-control">
-                        <option selected="selected">State...</option>
-                        <option>...</option>
+                      <input class="multisteps-form__input form-control" type="text" placeholder="State"/>
                       </select>
                     </div>
                     <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                      <input class="multisteps-form__input form-control" type="text" placeholder="Zip"/>
+                      <input class="multisteps-form__input form-control" type="text" placeholder="Pincode"/>
                     </div>
                   </div>
                   <div class="button-row d-flex mt-4">
                     <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+                </div>
+              </div>
+              <!--single form panel-->
+              <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                <h3 class="multisteps-form__title">Personal Info</h3>
+                <div class="multisteps-form__content">
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-6">
+                      <input class="multisteps-form__input form-control" type="text" placeholder="Student Mobile Numbe"/>
+                    </div>
+                    <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                      <input class="multisteps-form__input form-control" type="text" placeholder="Registration Nuber"/>
+                    </div>
+                  </div>
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-6">
+                      <input class="multisteps-form__input form-control" type="text" placeholder="Date of Birth" onfocus="(this.type='date')" />
+                    </div>
+                    <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                        <select class="pick-animation__select form-control">
+                            <option value="0" selected="selected">Department</option>
+                            <option value="CSD">CSD</option>
+                            <option value="CSE">CSE</option>
+                            <option value="IOT">CSE(IOT)</option>
+                            <option value="CSBS">CSBS</option>
+                            <option value="IT">IT</option>
+                            <option value="AIDS">AIDS</option>
+                            <option value="AIML">AIML</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EEE">EEE</option>
+                            <option value="CIVIL">CIVIL</option>
+                            <option value="MECH">MECH</option>
+                         </select>
+                    </div>
+                  </div>    
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-6">
+                        <select class="pick-animation__select form-control">
+                            <option value="0" selected="selected">Batch</option>
+                            <option value="2023">2019-2023</option>
+                            <option value="2024">2020-2024</option>
+                            <option value="2025">2021-2025</option>
+                            <option value="2026">2022-2026</option>
+                         </select>
+                    </div>
+                    <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                        <label id="gender">Gender : </label>
+                        <input type="radio" name="Gender" id="male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="Gender" id="female">
+                        <label for="female">Female</label>
+                    </div>
+                  </div>
+                  <div class="button-row d-flex mt-4">
                     <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
                   </div>
                 </div>
