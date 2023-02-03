@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 $con = mysqli_connect("localhost", "root", "", "counselling_automation");
 // session_start();
@@ -29,6 +27,9 @@ if(isset($_POST['signup'])){
 
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     
     <meta charset="UTF-8">
