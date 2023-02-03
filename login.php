@@ -49,7 +49,7 @@ if(isset($_POST['signup'])){
                 <input name="sname" id="sname" type="text" placeholder="Name" />
                 <input name="email" id="email" type="email" placeholder="Email" />
                 <input name="regno" id="regno" type="text" placeholder="Registration Number" />
-                <button type="submit" name="signup">Sign Up</button>
+                <button type="submit" name="signup">CREATE</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -70,8 +70,8 @@ if(isset($_POST['signup'])){
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hi, there!</h1>
-                    <p>FillUp Your  Details and start Bulding Your Counselling Booklet</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <p>Don't Have A Counselling Bookelt..!<br>Register And Get One NOW</p>
+                    <button class="ghost" id="signUp">Click Here</button>
                 </div>
             </div>
         </div>
