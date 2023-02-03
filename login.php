@@ -9,14 +9,6 @@ if(isset($_POST['signin'])){
     if(empty($run)){
         echo "data was not found";
     }
-    // $data = mysqli_fetch_assoc($run);
-    // if($run){
-    //     echo "Jia Jii Jia Jia Bhavani";
-    // }
-    // else {
-    //     echo "Ohm Namo Shiva";
-    // }
-    // $result = mysqli_fetch_assoc($run);
 
 } 
 
@@ -44,13 +36,17 @@ if(isset($_POST['signup'])){
     <h2>SRKR Student Counselling Booklet</h2>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form method="post" >
+            <!-- form for creating account start -->
+
+            <form method="post" action="create.php">
                 <h1>Create Booklet!</h1>
                 <input name="sname" id="sname" type="text" placeholder="Name" />
                 <input name="email" id="email" type="email" placeholder="Email" />
                 <input name="regno" id="regno" type="text" placeholder="Registration Number" />
                 <button type="submit" name="signup">CREATE</button>
             </form>
+
+            <!-- form for creating account end -->
         </div>
         <div class="form-container sign-in-container">
             <form method="post" >
