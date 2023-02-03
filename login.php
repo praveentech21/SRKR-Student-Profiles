@@ -8,10 +8,10 @@ if(isset($_POST['signin'])){
     $password=$_POST['password'];
     $quary = "select password,name from Student where regno = '$regno' ";
     $run = mysqli_query($con,$quary);
-    if(!$run){
+    if(empty($run)){
         echo "data was not found";
     }
-    $data = mysqli_fetch_assoc($run);
+    // $data = mysqli_fetch_assoc($run);
     // if($run){
     //     echo "Jia Jii Jia Jia Bhavani";
     // }
