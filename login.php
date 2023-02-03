@@ -40,8 +40,7 @@ if(isset($_POST['signup'])){
 </head>
 
 <body>
-    <!-- Ohm Namo Shivaya Hara Hara maha Deyva Shambo
-    Jia Bhavani Jia J ai Bhavani -->
+    <!-- Jai Bhajaranga Bali -->
     <h2>SRKR Student Counselling Booklet</h2>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
