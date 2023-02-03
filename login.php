@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-
-error_reporting(E_ALL & ~E_NOTICE);
-
-include "link.php";
+$con = mysqli_connect("localhost", "root", "", "counselling_automation");
 // session_start();
 if(isset($_POST['signin'])){
     $regno = $_POST['regno'];
     $password=$_POST['password'];
     $quary = "select password,name from Student where regno = '$regno' ";
-    
     $run = mysqli_query($con,$quary);
-    $result = mysqli_fetch_assoc($run);
+    if(!$run){
+        echo "data was not found";
+    }
+    $data = mysqli_fetch_assoc($run);
+    // if($run){
+    //     echo "Jia Jii Jia Jia Bhavani";
+    // }
+    // else {
+    //     echo "Ohm Namo Shiva";
+    // }
+    // $result = mysqli_fetch_assoc($run);
 
-    if($result['count(regno)']==0){
-        echo "jai jai Bhavani Jai Bhavani";
-    }
-    else {
-        echo "You are Not Registred";
-    }
 } 
 
 if(isset($_POST['signup'])){
