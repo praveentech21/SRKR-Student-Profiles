@@ -1,27 +1,39 @@
 <?php
-$con = mysqli_connect("localhost", "root", "", "counselling_automation");
-// session_start();
-if(isset($_POST['signin'])){
-    echo "Jai Jai Rama";
-    $regno = $_POST['regno'];
-    $password=$_POST['password'];
-    $quary = "select password,name from Student where regno = '$regno' ";
-    $run = mysqli_query($con,$quary);
-    $data = mysqli_fetch_assoc($run);
-    if(empty($run)){
-        echo "User not exsists Shiva";
-        
-    }
-} 
 
-if(isset($_POST['signup'])){
+$con = new mysqli("localhost", "root", "", "counselling_automation");
+if(isset($_POST['signin'])){
+    $quary = "select sname,password,email from student where regno ='{$_POST['regno']}' ";
+    $run = mysqli_query($con, $quary);
+    $data = mysqli_fetch_assoc($run);
+    if(empty($data)){
+        echo "<script>alert('You are Not Registred')</script>";
+    }
+    else{
+        if($data['password']==$_POST['password'] && $data['password'] != null ){
+            header("Location:dashboard.html");
+        }
+        else{
+            echo "You entered wrong password {$data['sname']}";
+        }
+        session_start();
+        $_SESSION['name'] = $data['sname'];
+        $_SESSION['Regno'] = $_POST['regno'];
+        $_SESSION['Email'] = $data['email'];
+    }
+}
+
+if($_POST['signup']){
     $sname = $_POST['sname'];
     $email = $_POST['email'];
     $regno = $_POST['regno'];
+    $quary = "insert into student ('sname','email','regno') values('$sname','$email','$regno')";
+    $run = mysqli_query($con, $quary);
+
 }
+
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
