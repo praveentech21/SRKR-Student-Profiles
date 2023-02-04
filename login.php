@@ -4,33 +4,25 @@
 $con = mysqli_connect("localhost", "root", "", "counselling_automation");
 // session_start();
 if(isset($_POST['signin'])){
+    echo "Jai Jai Rama";
     $regno = $_POST['regno'];
     $password=$_POST['password'];
     $quary = "select password,name from Student where regno = '$regno' ";
     $run = mysqli_query($con,$quary);
+    $data = mysqli_fetch_assoc($run);
     if(empty($run)){
-        echo "data was not found";
-    }   
-    // $data = mysqli_fetch_assoc($run);
-    // if($run){
-    //     echo "Jia Jii Jia Jia Bhavani";
-    // }
-    // else {
-    //     echo "Ohm Namo Shiva";
-    // }
-    // $result = mysqli_fetch_assoc($run);
-
+        echo "User not exsists Shiva";
+        
+    }
 } 
 
 if(isset($_POST['signup'])){
     $sname = $_POST['sname'];
     $email = $_POST['email'];
     $regno = $_POST['regno'];
-
 }
 ?>
 <head>
-    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
