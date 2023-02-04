@@ -12,10 +12,6 @@ if(isset($_POST['signin'])){
         echo "User not exsists Shiva";
         
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 8ccbc361efcac006053e8e9323d658fd031b29b0
 } 
 
 if(isset($_POST['signup'])){
