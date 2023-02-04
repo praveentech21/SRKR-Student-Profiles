@@ -10,7 +10,7 @@ if(isset($_POST['signin'])){
     $run = mysqli_query($con,$quary);
     if(empty($run)){
         echo "data was not found";
-    }
+    }   
     // $data = mysqli_fetch_assoc($run);
     // if($run){
     //     echo "Jia Jii Jia Jia Bhavani";
