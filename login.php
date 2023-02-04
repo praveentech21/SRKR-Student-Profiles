@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 $con = mysqli_connect("localhost", "root", "", "counselling_automation");
 // session_start();
@@ -14,6 +12,10 @@ if(isset($_POST['signin'])){
         echo "User not exsists Shiva";
         
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8ccbc361efcac006053e8e9323d658fd031b29b0
 } 
 
 if(isset($_POST['signup'])){
@@ -22,6 +24,9 @@ if(isset($_POST['signup'])){
     $regno = $_POST['regno'];
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,18 +36,21 @@ if(isset($_POST['signup'])){
 </head>
 
 <body>
-    <!-- Ohm Namo Shivaya Hara Hara maha Deyva Shambo
-    Jia Bhavani Jia J ai Bhavani -->
+    <!-- Jai Bhajaranga Bali -->
     <h2>SRKR Student Counselling Booklet</h2>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form method="post" >
+            <!-- form for creating account start -->
+
+            <form method="post" action="create.php">
                 <h1>Create Booklet!</h1>
                 <input name="sname" id="sname" type="text" placeholder="Name" />
                 <input name="email" id="email" type="email" placeholder="Email" />
                 <input name="regno" id="regno" type="text" placeholder="Registration Number" />
-                <button type="submit" name="signup">Sign Up</button>
+                <button type="submit" name="signup">CREATE</button>
             </form>
+
+            <!-- form for creating account end -->
         </div>
         <div class="form-container sign-in-container">
             <form method="post" >
@@ -62,8 +70,8 @@ if(isset($_POST['signup'])){
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hi, there!</h1>
-                    <p>FillUp Your  Details and start Bulding Your Counselling Booklet</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <p>Don't Have A Counselling Bookelt..!<br>Register And Get One NOW</p>
+                    <button class="ghost" id="signUp">Click Here</button>
                 </div>
             </div>
         </div>
