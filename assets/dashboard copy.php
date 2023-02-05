@@ -152,19 +152,23 @@ else {
           <form class="forms-sample">
             <div class="form-group">
               <label for="exampleInputName1">Student Name</label>
-              <label  class="form-control"><?php echo "{$_SESSION['name']}"; ?></label>
+              <input type="text" class="form-control" id="sdname" placeholder="Name" name="sdname"/>
             </div>
             <div class="form-group">
               <label for="exampleTextarea1">Address For Communication</label>
-              <label  class="form-control"><?php echo "{$_SESSION['name']}"; ?></label>
+              <textarea
+                class="form-control"
+                id="exampleTextarea1"
+                rows="4"
+              ></textarea>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail3">Department</label>
-              <label  class="form-control"><?php echo "{$_SESSION['name']}"; ?></label>
+              <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" />
             </div>
             <div class="form-group">
               <label for="exampleInputPassword4">Registration No.</label>
-              <label  class="form-control"><?php echo "{$_SESSION['name']}"; ?></label>
+              <input type="number" class="form-control" id="dregdno"  />
             </div>
             
             <div class="form-group">

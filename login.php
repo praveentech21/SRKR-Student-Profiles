@@ -1,6 +1,5 @@
 <?php
-
-$con = new mysqli("localhost", "root", "", "counselling_automation");
+include("link.php");
 if(isset($_POST['signin'])){
     $quary = "select sname,password,email from student where regno ='{$_POST['regno']}' ";
     $run = mysqli_query($con, $quary);
@@ -10,19 +9,19 @@ if(isset($_POST['signin'])){
     }
     else{
         if($data['password']==$_POST['password'] && $data['password'] != null ){
-            header("Location:dashboard.html");
+            session_start();
+            $_SESSION['Name'] = $data['sname'];
+            $_SESSION['Regno'] = $_POST['regno'];
+            $_SESSION['Email'] = $data['email'];
+            header("Location:dashboard.php");
         }
         else{
             echo "You entered wrong password {$data['sname']}";
         }
-        session_start();
-        $_SESSION['name'] = $data['sname'];
-        $_SESSION['Regno'] = $_POST['regno'];
-        $_SESSION['Email'] = $data['email'];
     }
 }
 
-if($_POST['signup']){
+if(isset($_POST['signup'])){
     $sname = $_POST['sname'];
     $email = $_POST['email'];
     $regno = $_POST['regno'];

@@ -1,7 +1,50 @@
+<?php
+include("link.php");
+session_start();
+$regno = $_SESSION['Regno'];
+if(isset($_POST['submit'])){
+  $Regno = $_POST['Regno'];
+  $Sname = $_POST['Sname'];
+  $DOB = $_POST['DOB'];
+  $Departmetment = $_POST['Departmetment'];
+  $Batch = $_POST['Batch'];
+  $Gender = $_POST['Gender'];
+  $Smobile = $_POST['Smobile'];
+  $Fname = $_POST['Fname'];
+  $Pmobile = $_POST['Pmobile'];
+  $Poccp = $_POST['Poccp'];
+  $Caste = $_POST['Caste'];
+  $Religion = $_POST['Religion'];
+  $Income = $_POST['Income'];
+  $Address = $_POST['Address'];
+  $Aplace = $_POST['Aplace'];
+  $Adistrict = $_POST['Adistrict'];
+  $Astate = $_POST['Astate'];
+  $Pincode = $_POST['Pincode'];
+  $Tenth = $_POST['Tenth'];
+  $Inter = $_POST['Inter'];
+  $Rank = $_POST['Rank'];
+  $Admission = $_POST['Admission'];
+  $Category = $_POST['Category'];
+  $Photo = $_POST['Photo'];
+  $Goal = $_POST['Goal'];
+  $CareInter = $_POST['CareInter'];
+  $Hobbies = $_POST['Hobbies'];
+  $Strenghts = $_POST['Strenghts'];
+  $Improve = $_POST['Improve'];
+  $detailsquery = "insert into std_detls values('$Regno','$Sname','$DOB','$Departmetment','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Religion','$Income')";
+  $addressquery = "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode')";
+  $aboutquery = "insert into about values('$Regno','$Tenth','$Inter','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')";
+  $rundetails = mysqli_query($con, $detailsquery);
+  $runabout = mysqli_query($con, $aboutquery);
+  $runaddress = mysqli_query($con, $addressquery);
+}
+
+?>
+
+
 <!DOCTYPE html>
-
-<html lang="en">
-
+]<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Shiva Bhavani</title>
@@ -35,8 +78,8 @@
             <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
               <div class="multisteps-form__progress">
                 <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">Basic Info</button>
-                <button class="multisteps-form__progress-btn" type="button" title="Address">Address</button>
                 <button class="multisteps-form__progress-btn" type="button" title="Personal Information">Personal Information</button>
+                <button class="multisteps-form__progress-btn" type="button" title="Address">Address</button>
                 <button class="multisteps-form__progress-btn" type="button" title="Acedimices">Acedimices</button>
                 <button class="multisteps-form__progress-btn" type="button" title="Comments">About You </button>
               </div>
@@ -52,23 +95,23 @@
                   <div class="multisteps-form__content">
                     <div class="form-row mt-4">
                       <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Student Name" />
+                        <input class="multisteps-form__input form-control" type="text" placeholder="Student Name" name="Sname" />
                       </div>
                       <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                        <input class="multisteps-form__input form-control" type="text"
+                        <input class="multisteps-form__input form-control" type="text" name="Regno"
                           placeholder="Registration Nuber" />
                       </div>
                     </div>
                     <div class="form-row mt-4">
                       <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Date of Birth"
+                        <input class="multisteps-form__input form-control" type="text" name="DOB" placeholder="Date of Birth"
                           onfocus="(this.type='date')" />
                       </div>
                       <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                        <select class="pick-animation__select form-control">
+                        <select class="pick-animation__select form-control" name="Departmetment">
                           <option value="0" selected="selected">Department</option>
                           <option value="CSD">CSD</option>
-                          <option value="CSE">CSE</option>
+                          <option value="CSE">CSE</option>  
                           <option value="IOT">CSE(IOT)</option>
                           <option value="CSBS">CSBS</option>
                           <option value="IT">IT</option>
@@ -83,7 +126,7 @@
                     </div>
                     <div class="form-row mt-4">
                       <div class="col-12 col-sm-6">
-                        <select class="pick-animation__select form-control">
+                        <select class="pick-animation__select form-control" name="Batch" >
                           <option value="0" selected="selected">Batch</option>
                           <option value="2023">2019-2023</option>
                           <option value="2024">2020-2024</option>
@@ -93,13 +136,60 @@
                       </div>
                       <div class="col-12 col-sm-6 mt-4 mt-sm-0">
                         <label id="gender">Gender : </label>
-                        <input type="radio" name="Gender" id="male">
+                        <input type="radio" name="Gender" id="male" value=2>
                         <label for="male">Male</label>
-                        <input type="radio" name="Gender" id="female">
+                        <input type="radio" name="Gender" id="female" value=1 >
                         <label for="female">Female</label>
                       </div>
                     </div>
                     <div class="button-row d-flex mt-4">
+                      <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!--single form panel-->
+                <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                  <h3 class="multisteps-form__title">Personal Info</h3>
+                  <div class="multisteps-form__content">
+                    <div class="form-row mt-4">
+                      <div class="col-12 col-sm-6">
+                        <input class="multisteps-form__input form-control" type="text"
+                          name="Smobile" placeholder="Student Mobile Number " />
+                      </div>
+                      <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                        <input class="multisteps-form__input form-control" type="text" name="Fname" placeholder="Father Name" />
+                      </div>
+                    </div>
+                    <div class="form-row mt-4">
+                      <div class="col-12 col-sm-6">
+                        <input class="multisteps-form__input form-control" type="text"
+                          name="Pmobile" placeholder="Parent Mobile Number" />
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <input class="multisteps-form__input form-control" type="text"
+                          name="Poccp" placeholder="Parent Occupation" />
+                      </div>
+                    </div>
+                    <div class="form-row mt-4">
+                      <div class="container text-center">
+                        <div class="container text-center">
+                          <div class="row">
+                            <div class="col">
+                              <input class="multisteps-form__input form-control" type="text" name="Caste" placeholder="Caste" />
+                            </div>
+                            <div class="col">
+                              <input class="multisteps-form__input form-control" type="text" name="Religion" placeholder="Religion" />
+                            </div>
+                            <div class="col">
+                              <input class="multisteps-form__input form-control" type="text" name="Income" placeholder="Income" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="button-row d-flex mt-4">
+                      <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
                       <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
                     </div>
                   </div>
@@ -111,70 +201,24 @@
                     <div class="form-row mt-4">
                       <div class="col">
                         <input class="multisteps-form__input form-control" type="text"
-                          placeholder="Door no, FLat name,Street :" />
+                          name="Address" placeholder="Door no, FLat name,Street :" />
                       </div>
                     </div>
                     <div class="form-row mt-4">
                       <div class="col">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Place" />
+                        <input class="multisteps-form__input form-control" type="text" name="Aplace" placeholder="Place" />
                       </div>
                     </div>
                     <div class="form-row mt-4">
                       <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="District" />
+                        <input class="multisteps-form__input form-control" type="text" name="Adistrict" placeholder="District" />
                       </div>
                       <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="State" />
+                        <input class="multisteps-form__input form-control" type="text" name="Astate" placeholder="State" />
                         </select>
                       </div>
                       <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Pincode" />
-                      </div>
-                    </div>
-                    <div class="button-row d-flex mt-4">
-                      <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
-                      <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
-                    </div>
-                  </div>
-                </div>
-                <!--single form panel-->
-                <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
-                  <h3 class="multisteps-form__title">Personal Info</h3>
-                  <div class="multisteps-form__content">
-                    <div class="form-row mt-4">
-                      <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text"
-                          placeholder="Student Mobile Number " />
-                      </div>
-                      <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Parent Name" />
-                      </div>
-                    </div>
-                    <div class="form-row mt-4">
-                      <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text"
-                          placeholder="Parent Mobile Number" />
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text"
-                          placeholder="Parent Occupation" />
-                      </div>
-                    </div>
-                    <div class="form-row mt-4">
-                      <div class="container text-center">
-                        <div class="container text-center">
-                          <div class="row">
-                            <div class="col">
-                              <input class="multisteps-form__input form-control" type="text" placeholder="Caste" />
-                            </div>
-                            <div class="col">
-                              <input class="multisteps-form__input form-control" type="text" placeholder="Religion" />
-                            </div>
-                            <div class="col">
-                              <input class="multisteps-form__input form-control" type="text" placeholder="Income" />
-                            </div>
-                          </div>
-                        </div>
+                        <input class="multisteps-form__input form-control" type="text" name="Pincode" placeholder="Pincode" />
                       </div>
                     </div>
                     <div class="button-row d-flex mt-4">
@@ -189,33 +233,33 @@
                   <div class="multisteps-form__content">
                     <div class="form-row mt-4">
                       <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="10 th Percentage" />
+                        <input class="multisteps-form__input form-control" type="text" name="Tenth" placeholder="10 th Percentage" />
                       </div>
                       <div class="col-12 col-sm-6 mt-4 mt-sm-0">
                         <input class="multisteps-form__input form-control" type="text"
-                          placeholder="Inter/Polytech Percentage" />
+                          name="Inter" placeholder="Inter/Polytech Percentage" />
                       </div>
                     </div>
                     <div class="form-row mt-4">
                       <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Emcet/Ecet Rank"/>
+                        <input class="multisteps-form__input form-control" type="text" name="Rank" placeholder="Emcet/Ecet Rank"/>
                       </div>
                       <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                        <select class="pick-animation__select form-control">
-                          <option value="0" selected="selected">Mode of Admissiom</option>
-                          <option value="2023">Catageri A</option>
-                          <option value="2024">Catageri B</option>
-                          <option value="2025">Spot Admission</option>
-                          <option value="2026">Managment Seat</option>
+                        <select class="pick-animation__select form-control" name="Admission" >
+                          <option value=0 selected="selected">Mode of Admissiom</option>
+                          <option value="A cat">Catageri A</option>
+                          <option value="B cat">Catageri B</option>
+                          <option value="Spot">Spot Admission</option>
+                          <option value="Management">Management Seat</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-row mt-4">
                       <div class="col-12 col-sm-6">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Category"/>
+                        <input class="multisteps-form__input form-control" type="text" name="Category" placeholder="Category"/>
                       </div>
                       <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                        <input class="multisteps-form__input form-control" type="text" placeholder="Photo" onfocus="(this.type='file')"/>
+                        <input class="multisteps-form__input form-control" type="text" name="Photo" placeholder="Photo" onfocus="(this.type='file')"/>
                         </div>
                     </div>
                     <div class="button-row d-flex mt-4">
@@ -262,23 +306,23 @@
                   <div class="multisteps-form__content">
                     <div class="form-floating mb-3">
                       <label for="floatingInput">Goal in Life</label>
-                      <input type="email" class="form-control" id="floatingInput" placeholder="@ I want to be an IPS">
+                      <input type="text" class="form-control" id="floatingInput" name="Goal" placeholder="@ I want to be an IPS">
                     </div>
                     <div class="form-floating">
                       <label for="floatingPassword">Career Interest</label>
-                      <input type="password" class="form-control" id="floatingPassword" placeholder="Core/IT/Higher edu/Start-up/Govt./Family Bussiness/Others">
+                      <input type="text" class="form-control" id="floatingPassword" name="CareInter" placeholder="Core/IT/Higher edu/Start-up/Govt./Family Bussiness/Others">
                     </div>
                     <div class="form-floating">
                       <label for="floatingPassword">Hobbies</label>
-                      <input type="password" class="form-control" id="floatingPassword" placeholder="Reading Books/...">
+                      <input type="text" class="form-control" id="floatingPassword" name="Hobbies" placeholder="Reading Books/...">
                     </div>
                     <div class="form-floating">
                       <label for="floatingPassword">Strenghts</label>
-                      <input type="password" class="form-control" id="floatingPassword" placeholder="Self Confidance/...">
+                      <input type="text" class="form-control" id="floatingPassword" name="Strenghts" placeholder="Self Confidance/...">
                     </div>
                     <div class="form-floating">
                       <label for="floatingPassword">Areas to Improve</label>
-                      <input type="password" class="form-control" id="floatingPassword" placeholder="I am weak in hear....">
+                      <input type="text" class="form-control" id="floatingPassword" name="Improve" placeholder="I am weak in hear....">
                     </div>
                     <div class="button-row d-flex mt-4">
                       <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
