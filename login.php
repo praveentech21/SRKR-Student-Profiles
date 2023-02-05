@@ -1,5 +1,13 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require('PHPMailer/src/Exception.php');
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
 include("link.php");
+include 'message.php';
 if(isset($_POST['signin'])){
     $quary = "select sname,password,email from student where regno ='{$_POST['regno']}' ";
     $run = mysqli_query($con, $quary);
@@ -8,12 +16,17 @@ if(isset($_POST['signin'])){
         echo "<script>alert('You are Not Registred')</script>";
     }
     else{
-        if($data['password']==$_POST['password'] && $data['password'] != null ){
-            session_start();
-            $_SESSION['Name'] = $data['sname'];
-            $_SESSION['Regno'] = $_POST['regno'];
-            $_SESSION['Email'] = $data['email'];
-            header("Location:dashboard.php");
+        if($data['password']==$_POST['password'] ){
+            if($data['password'] == null){
+                echo "<script>alert('Check YOur Mail and set password')</script>";
+            }
+            else{
+                session_start();
+                $_SESSION['Name'] = $data['sname'];
+                $_SESSION['Regno'] = $_POST['regno'];
+                $_SESSION['Email'] = $data['email'];
+                header("Location:dashboard.php");
+            }
         }
         else{
             echo "You entered wrong password {$data['sname']}";
@@ -27,7 +40,25 @@ if(isset($_POST['signup'])){
     $regno = $_POST['regno'];
     $quary = "insert into student ('sname','email','regno') values('$sname','$email','$regno')";
     $run = mysqli_query($con, $quary);
-
+    
+    
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'shiva4bhavani@gmail.com';
+    $mail->Password = 'nzbqmvdtsvownwtf';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    $mail->setFrom('shiva4bhavani@gmail.com');
+    $mail->addAddress($_POST['email']);
+    $mail->isHTML(true);
+    $mail->Subject = 'Set Your Password for SRKR Counselling Book ';
+    $mail->Body = $message;
+    $mail->send();
+    echo "<script>alert('A link has been Sent to <a href='gmail.com'>Your Email</a> set Password using that link Shiva')</script>";
+    // echo ""
+    
 }
 
 ?>
