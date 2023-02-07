@@ -38,27 +38,35 @@ if(isset($_POST['signup'])){
     $sname = $_POST['sname'];
     $email = $_POST['email'];
     $regno = $_POST['regno'];
-    $quary = "insert into student ('sname','email','regno') values('$sname','$email','$regno')";
+    $random = randomstring();
+    $quary = "select sname from student where regno='$regno'";
     $run = mysqli_query($con, $quary);
-    
-    
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'shiva4bhavani@gmail.com';
-    $mail->Password = 'nzbqmvdtsvownwtf';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port = 465;
-    $mail->setFrom('shiva4bhavani@gmail.com');
-    $mail->addAddress($_POST['email']);
-    $mail->isHTML(true);
-    $mail->Subject = 'Set Your Password for SRKR Counselling Book ';
-    $mail->Body = $message;
-    $mail->send();
-    echo "<script>alert('A link has been Sent to <a href='gmail.com'>Your Email</a> set Password using that link Shiva')</script>";
-    // echo ""
-    
+    $data = mysqli_fetch_assoc($run);
+    if(!empty($data)){
+        echo "{$data['sname']} You have already registred Plese Login";
+    }
+    else{       
+        $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
+        $run = mysqli_query($con, $quary);
+        $send = new PHPMailer(true);
+        $send->isSMTP();
+        $send->Host = 'smtp.gmail.com';
+        $send->SMTPAuth = true;
+        $send->Username = 'shiva4bhavani@gmail.com';
+        $send->Password = 'nzbqmvdtsvownwtf';
+        $send->SMTPSecure = 'ssl';
+        $send->Port = 465;
+        $send->setFrom('shiva4bhavani@gsend.com');
+        $send->addAddress($_POST['email']);
+        $send->isHTML(true);
+        $send->Subject = 'Set Your Password for SRKR Counselling Book ';
+        $send->Body = $message;
+        // $done = $send->send();
+        // if($done){
+        echo "<script>alert('A link has been Sent to <a href='gmail.com'>Your Email</a> set Password using that link Shiva')</script>";
+        echo "";
+        // }
+        }    
 }
 
 ?>
@@ -80,7 +88,7 @@ if(isset($_POST['signup'])){
         <div class="form-container sign-up-container">
             <!-- form for creating account start -->
 
-            <form method="post" action="create.php">
+            <form method="post" >
                 <h1>Create Booklet!</h1>
                 <input name="sname" id="sname" type="text" placeholder="Name" />
                 <input name="email" id="email" type="email" placeholder="Email" />
@@ -132,3 +140,15 @@ signInButton.addEventListener('click', () => {
 </body>
 
 </html>
+
+<?php
+
+  function randomstring(){
+  $character = "qwertyuioplkjhgfdsazxcvbnm0987654321ASDFGHJKLPOIUYTREWQZXCVBNM";
+  $randomstring = 'a';
+  for ($i = 0; $i < 30;$i++)
+  $randomstring.=$character[rand(0,58)];
+  return $randomstring;
+  }
+
+?>
