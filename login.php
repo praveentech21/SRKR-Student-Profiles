@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -64,16 +65,16 @@ if(isset($_POST['signup'])){
         $send->addAddress($_POST['email']);
         $send->isHTML(true);
         $send->Subject = 'Set Your Password for SRKR Counselling Book ';
-        $message = $message = "Hi mr/mis $sname 
-        welcome to SRKR EC Counselling Forms 
-        Update Your Recode in your Mobile Using our Site SRKR EC
-        Thanks for Your Interest in SRKREC Counselling Automation Form
-        You have regintered with your register number : $regno
+        $message = $message = "Hi mr/mis <b>$sname</b> <br>
+        welcome to SRKR EC Counselling Forms <br>
+        Update Your Recode in your Mobile Using our Site SRKR EC<br>
+        Thanks for Your Interest in SRKREC Counselling Automation Form<br>
+        You have regintered with your register number :<b> $regno</b><br>
         Setyour Password using our link : srkrec.edu.in/setpassword.php?registration=$regno&random=$random
-
-        Connect with us Friends 
-        Thank You 
-        SRKR CSD
+<br>
+        Connect with us Friends <br>
+        Thank You <br>
+        <b>SRKR CSD<b>
         ";
         $send->Body = $message;
         $done = $send->send();
