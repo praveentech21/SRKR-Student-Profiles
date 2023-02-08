@@ -7,16 +7,12 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 include("link.php");
-include 'message.php';
 if(isset($_POST['signin'])){
-    $quary = "select sname,password,email from student where regno ='{$_POST['regno']}' ";
+    $quary = "select * from student where regno ='{$_POST['regno']}' ";
     $run = mysqli_query($con, $quary);
     $data = mysqli_fetch_assoc($run);
-    if(empty($data)){
-        echo "<script>alert('You are Not Registred')</script>";
-    }
-    else{
-        if($data['password']==$_POST['password'] ){
+    if(!empty($data)){
+        if($data['password']==$_POST['password'] && $data['random']=="passwordSettedShiva" ){
             if($data['password'] == null){
                 echo "<script>alert('Check YOur Mail and set password')</script>";
             }
@@ -32,18 +28,26 @@ if(isset($_POST['signin'])){
             echo "You entered wrong password {$data['sname']}";
         }
     }
+    else{
+        echo "<script>alert('You are Not Registred')</script>";
+    }
 }
 
 if(isset($_POST['signup'])){
     $sname = $_POST['sname'];
     $email = $_POST['email'];
+    $email= strtolower($email);
     $regno = $_POST['regno'];
     $random = randomstring();
-    $quary = "select sname from student where regno='$regno'";
-    $run = mysqli_query($con, $quary);
+    $run = mysqli_query($con, "select sname from student where regno='$regno'");
     $data = mysqli_fetch_assoc($run);
+    $run = mysqli_query($con,"select count(sname) from student where email='$email'");
+    $data1= mysqli_fetch_assoc($run);
     if(!empty($data)){
         echo "{$data['sname']} You have already registred Plese Login";
+    }
+    elseif($data1['count']!=0){
+        echo "<script>alert('This Email is ALredy Registred')</script>";
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
@@ -60,12 +64,25 @@ if(isset($_POST['signup'])){
         $send->addAddress($_POST['email']);
         $send->isHTML(true);
         $send->Subject = 'Set Your Password for SRKR Counselling Book ';
+        $message = $message = "Hi mr/mis $sname 
+        welcome to SRKR EC Counselling Forms 
+        Update Your Recode in your Mobile Using our Site SRKR EC
+        Thanks for Your Interest in SRKREC Counselling Automation Form
+        You have regintered with your register number : $regno
+        Setyour Password using our link : srkrec.edu.in/setpassword.php?registration=$regno&random=$random
+
+        Connect with us Friends 
+        Thank You 
+        SRKR CSD
+        ";
         $send->Body = $message;
-        // $done = $send->send();
-        // if($done){
+        $done = $send->send();
+        if(isset($done)){
         echo "<script>alert('A link has been Sent to <a href='gmail.com'>Your Email</a> set Password using that link Shiva')</script>";
-        echo "";
-        // }
+        }
+        else {
+            echo "Mail was not sended". $send->ErrorInfo;
+        }
         }    
 }
 
@@ -144,7 +161,7 @@ signInButton.addEventListener('click', () => {
 <?php
 
   function randomstring(){
-  $character = "qwertyuioplkjhgfdsazxcvbnm0987654321ASDFGHJKLPOIUYTREWQZXCVBNM";
+  $character = "qwertyuioplkjhgfdsazxcvbnm0987654321ADFGHJKLPOIUYTREWQZXCVBNM";
   $randomstring = 'a';
   for ($i = 0; $i < 30;$i++)
   $randomstring.=$character[rand(0,58)];
