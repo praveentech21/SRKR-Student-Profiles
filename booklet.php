@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
   <title>Shiva Bhavani</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-<link rel="stylesheet" href="booklet.css">
+<link rel="stylesheet" href="assets/css/booklet.css">
 </head>
 
 <body>
