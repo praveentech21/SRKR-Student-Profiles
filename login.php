@@ -1,11 +1,10 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require('PHPMailer/src/Exception.php');
 require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/SMTP.php';   
 
 include("link.php");
 if(isset($_POST['signin'])){
@@ -13,20 +12,25 @@ if(isset($_POST['signin'])){
     $run = mysqli_query($con, $quary);
     $data = mysqli_fetch_assoc($run);
     if(!empty($data)){
-        if($data['password']==$_POST['password'] && $data['random']=="passwordSettedShiva" ){
-            if($data['password'] == null){
-                echo "<script>alert('Check YOur Mail and set password')</script>";
+        if($data['random']=="passwordSettedShiva"){
+            if($_POST['password'] != null){
+                if($data['password'] == $_POST['password'] ){
+                    session_start();
+                    $_SESSION['Name'] = $data['sname']; 
+                    $_SESSION['Regno'] = $_POST['regno'];
+                    $_SESSION['Email'] = $data['email'];
+                    header("Location:index.php");
+                }
+                else{
+                    echo "You entered wrong password  {$data['sname']} ";
+                }
             }
             else{
-                session_start();
-                $_SESSION['Name'] = $data['sname'];
-                $_SESSION['Regno'] = $_POST['regno'];
-                $_SESSION['Email'] = $data['email'];
-                header("Location:dashboard.php");
+                echo "<script>alert('Plese enter the password  {$data['sname']} that you have setted in the Mail')</script>";
             }
         }
-        else{
-            echo "You entered wrong password {$data['sname']}";
+        else {
+            echo "<script>alert('{$data['sname']} you have not setted the  password Check YOur Mail and set password')</script>";
         }
     }
     else{
@@ -36,8 +40,7 @@ if(isset($_POST['signin'])){
 
 if(isset($_POST['signup'])){
     $sname = $_POST['sname'];
-    $email = $_POST['email'];
-    $email= strtolower($email);
+    $email= strtolower($_POST['email']);
     $regno = $_POST['regno'];
     $random = randomstring();
     $run = mysqli_query($con, "select sname from student where regno='$regno'");
@@ -45,7 +48,7 @@ if(isset($_POST['signup'])){
     $run = mysqli_query($con,"select count(sname) from student where email='$email'");
     $data1= mysqli_fetch_assoc($run);
     if(!empty($data)){
-        echo "{$data['sname']} You have already registred Plese Login";
+        echo "{$data['sname']} You have already registred Plese Login";         
     }
     elseif($data1['count']!=0){
         echo "<script>alert('This Email is ALredy Registred')</script>";
@@ -58,7 +61,7 @@ if(isset($_POST['signup'])){
         $send->Host = 'smtp.gmail.com';
         $send->SMTPAuth = true;
         $send->Username = 'shiva4bhavani@gmail.com';
-        $send->Password = 'nzbqmvdtsvownwtf';
+        $send->Password = 'dlbpuawahopqtkox';
         $send->SMTPSecure = 'ssl';
         $send->Port = 465;
         $send->setFrom('shiva4bhavani@gsend.com');
