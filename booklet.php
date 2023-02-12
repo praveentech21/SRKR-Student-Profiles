@@ -2,9 +2,13 @@
 include("link.php");
 session_start();
 
-$Regno = $_SESSION['Regno'];
 
-if (isset($_POST['submit'])) {
+$Regno = $_SESSION['Regno'];
+if(empty($Regno)){
+  header("location:login.php");
+}
+
+  if (isset($_POST['submit'])) {
   $Department = $_POST['Department'];
   $Batch = $_POST['Batch'];
   $Religion = $_POST['Religion'];
@@ -34,14 +38,14 @@ if (isset($_POST['submit'])) {
   $Hobbies = $_POST['Hobbies'];
   $Strenghts = $_POST['Strenghts'];
   $Improve = $_POST['Improve'];
-  $Photo = $_POST['Photo'];
+  $Photo = $_POST['photo'];
   $detailsquery = "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')";
   $addressquery = "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')";
   $aboutquery = "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')";
   $rundetails = mysqli_query($con, $detailsquery);
   $runabout = mysqli_query($con, $aboutquery);
   $runaddress = mysqli_query($con, $addressquery);
-}
+  }
 
 ?>
 <!DOCTYPE html>
@@ -79,7 +83,7 @@ if (isset($_POST['submit'])) {
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Student Details</h4>
-                  <form class="form-sample" method="post">
+                  <form class="form-sample" method="post" >
                     <p class="card-description">Details</p>
                     <div class="row">
                       <div class="col-md-6">
@@ -358,28 +362,28 @@ if (isset($_POST['submit'])) {
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail3"> Carrer Interest </label>
-                        <input type="email" class="form-control" name="CareInter" id="exampleInputEmail3" placeholder="I am Interest.........">
+                        <input type="text" class="form-control" name="CareInter" id="exampleInputEmail3" placeholder="I am Interest.........">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword4"> Hobbies </label>
-                        <input type="password" class="form-control" name="Hobbies" id="exampleInputPassword4" placeholder="My Hobbies are.....">
+                        <input type="text" class="form-control" name="Hobbies" id="exampleInputPassword4" placeholder="My Hobbies are.....">
                       </div>
                       <div class="form-group">
                         <label for="exampleSelectGender"> Strengths</label>
-                        <input type="password" class="form-control" name="Strenghts" id="exampleInputPassword4" placeholder="I have .....">
+                        <input type="text" class="form-control" name="Strenghts" id="exampleInputPassword4" placeholder="I have .....">
                       </div>
                       <div class="form-group">
                         <label for="exampleSelectGender"> Area to Improve</label>
-                        <input type="password" class="form-control" name="Improve" id="exampleInputPassword4" placeholder="I want to Improve ......">
+                        <input type="text" class="form-control" name="Improve" id="exampleInputPassword4" placeholder="I want to Improve ......">
                       </div>
                       <div class="form-group">
                         <label> Your Photo</label>
                         <div class="input-group col-xs-12">
-                          <input  class="form-control file-upload-info"  placeholder="My Profile Picture ...." type="file">
+                          <input  class="form-control file-upload-info" name="photo" placeholder="My Profile Picture ...." type="file">
                         </div>
                       </div>
                       
-                      <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                      <button type="submit" name="submit" class="btn btn-gradient-primary me-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                       </div>
                       <!-- </div> -->

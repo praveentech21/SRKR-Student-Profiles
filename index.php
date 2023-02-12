@@ -2,7 +2,10 @@
 
   include "link.php";
   session_start();
-  
+  $Regno = $_SESSION['Regno'];
+  if(empty($Regno)){
+    header("location:login.php");
+  }  
 
 
 ?>
