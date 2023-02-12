@@ -15,6 +15,7 @@ if(isset($_POST['submit'])){
   $Poccp = $_POST['Poccp'];
   $Caste = $_POST['Caste'];
   $Religion = $_POST['Religion'];
+  $Community = $_POST['Community'];
   $Income = $_POST['Income'];
   $Address = $_POST['Address'];
   $Aplace = $_POST['Aplace'];
@@ -123,7 +124,7 @@ if(isset($_POST['submit'])){
           <div class="row">
             <div class="col-12 col-lg-8 m-auto">
               <form method="post" class="multisteps-form__form">
-                <!--single form panel-->
+                <!--single form panel-->`
                 <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
                   <h3 class="multisteps-form__title">Your Basic Info</h3>
                   <div class="multisteps-form__content">

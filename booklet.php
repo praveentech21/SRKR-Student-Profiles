@@ -2,40 +2,42 @@
 include("link.php");
 session_start();
 
-$regno = $_SESSION['Regno'];
-if(isset($_POST['submit'])){
-  $Regno = $_POST['Regno'];
-  $Sname = $_POST['Sname'];
-  $DOB = $_POST['DOB'];
-  $Departmetment = $_POST['Departmetment'];
+$Regno = $_SESSION['Regno'];
+
+if (isset($_POST['submit'])) {
+  $Department = $_POST['Department'];
   $Batch = $_POST['Batch'];
+  $Religion = $_POST['Religion'];
+  $Caste = $_POST['Caste'];
+  $DOB = $_POST['DOB'];
   $Gender = $_POST['Gender'];
+  $Community = $_POST['Community'];
   $Smobile = $_POST['Smobile'];
   $Fname = $_POST['Fname'];
   $Pmobile = $_POST['Pmobile'];
   $Poccp = $_POST['Poccp'];
-  $Caste = $_POST['Caste'];
-  $Religion = $_POST['Religion'];
   $Income = $_POST['Income'];
   $Address = $_POST['Address'];
   $Aplace = $_POST['Aplace'];
+  $Acity = $_POST['Acity'];
   $Adistrict = $_POST['Adistrict'];
   $Astate = $_POST['Astate'];
   $Pincode = $_POST['Pincode'];
   $Tenth = $_POST['Tenth'];
   $Inter = $_POST['Inter'];
+  $JeeMain = $_POST['JeeMain'];
   $Rank = $_POST['Rank'];
   $Admission = $_POST['Admission'];
   $Category = $_POST['Category'];
-  $Photo = $_POST['Photo'];
   $Goal = $_POST['Goal'];
   $CareInter = $_POST['CareInter'];
   $Hobbies = $_POST['Hobbies'];
   $Strenghts = $_POST['Strenghts'];
   $Improve = $_POST['Improve'];
-  $detailsquery = "insert into std_detls values('$Regno','$Sname','$DOB','$Departmetment','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Religion','$Income')";
-  $addressquery = "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode')";
-  $aboutquery = "insert into about values('$Regno','$Tenth','$Inter','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')";
+  $Photo = $_POST['Photo'];
+  $detailsquery = "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')";
+  $addressquery = "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')";
+  $aboutquery = "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')";
   $rundetails = mysqli_query($con, $detailsquery);
   $runabout = mysqli_query($con, $aboutquery);
   $runaddress = mysqli_query($con, $addressquery);
@@ -44,223 +46,384 @@ if(isset($_POST['submit'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="assets/css/booklet.css">
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-  </head>
-  <body>
-    <div class="container-scroller">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Purple Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="assets/css/booklet.css">
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <?php
+    include "header.php";
+    ?>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
       <?php
-        include "header.php";
+      include "navbar.php";
       ?>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
-        <?php
-        include "navbar.php";
-        ?>
-        <div class="main-panel">
+      <div class="main-panel">
         <div class="content-wrapper">
-        <div class="row">
-          <div class="col-12">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Student Details</h4>
-                    <form class="form-sample">
-                      <p class="card-description">Details</p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Department</label>
-                            <div class="col-sm-9">
-                            <select class="form-control">
-                            <option value="CSD">CSD</option>
-                            <option value="CSE">CSE</option>  
-                            <option value="IOT">CSE(IOT)</option>
-                            <option value="CSBS">CSBS</option>
-                            <option value="IT">IT</option>
-                            <option value="AIDS">AIDS</option>
-                            <option value="AIML">AIML</option>
-                            <option value="ECE">ECE</option>
-                            <option value="EEE">EEE</option>
-                            <option value="CIVIL">CIVIL</option>
-                            <option value="MECH">MECH</option>                              </select>                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"> Gender </label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                              </select>                            </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Student Details</h4>
+                  <form class="form-sample" method="post">
+                    <p class="card-description">Details</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Department</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="Department">
+                              <option value="CSD">CSD</option>
+                              <option value="CSE">CSE</option>
+                              <option value="IOT">CSE(IOT)</option>
+                              <option value="CSBS">CSBS</option>
+                              <option value="IT">IT</option>
+                              <option value="AIDS">AIDS</option>
+                              <option value="AIML">AIML</option>
+                              <option value="ECE">ECE</option>
+                              <option value="EEE">EEE</option>
+                              <option value="CIVIL">CIVIL</option>
+                              <option value="MECH">MECH</option>
+                            </select>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"> Batch </label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Batch </label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="Batch">
                               <option value="2023">2019-2023</option>
                               <option value="2024">2020-2024</option>
                               <option value="2025">2021-2025</option>
                               <option value="2026">2022-2026</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" type="date" placeholder="dd/mm/yyyy" />
-                            </div>
+                            </select>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Category</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
-                                <option>Category4</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Membership</label>
-                            <div class="col-sm-4">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                              </div>
-                            </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Religion</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Religion" />
                           </div>
                         </div>
                       </div>
-                      <p class="card-description"> Address </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 1</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Caste</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Caste" />
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 2</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Postcode</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Date of Birth</label>
+                          <div class="col-sm-9">
+                            <input class="form-control" type="date" name="DOB" placeholder="dd/mm/yyyy" />
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Gender </label>
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios1" value="2" checked> Male
+                              </label>
                             </div>
                           </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>America</option>
-                                <option>Italy</option>
-                                <option>Russia</option>
-                                <option>Britain</option>
-                              </select>
+                          <div class="col-sm-5">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios2" value="1"> Female 
+                              </label>
                             </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div> -->
+                    <p class="card-description"> Personal Details </p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Community</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Community" />
                           </div>
                         </div>
                       </div>
-                    </form>
-                  </div>
-                </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Student Mobile </label>
+                          <div class="col-sm-9">
+                            <input type="text" name="Smobile" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Father Name </label>
+                          <div class="col-sm-9">
+                            <input type="text" name="Fname" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Parent Mobile</label>
+                          <div class="col-sm-9">
+                            <input type="text" name="Pmobile" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Occupation</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Poccp" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Income</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Income" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="card-description"> Address </p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Address</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Address" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">District</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Adistrict" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Land Mark</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Aplace" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">State</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Astate" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">City</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Acity" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Post Code</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Pincode" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p class="card-description"> Accedimics in percantage</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Tenth </label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Tenth" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Inter/Polytchnic</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Inter" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Jee Mains</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="JeeMain" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> EAPCET/ECET</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Rank" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Admission</label>
+                          <div class="col-sm-9">
+                          <select class="form-control" name="Admission" >
+                          <option value="">Mode of Admission</option>
+                          <option value="A cat">Category A</option>
+                          <option value="B cat">Category B</option>
+                          <option value="Spot">Spot Admission</option>
+                          <option value="Management">Management Seat</option>                          
+                          </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Category </label>
+                          <div class="col-sm-9">
+                          <input type="text" class="form-control" name="Category" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <!-- <div class="col-12 grid-margin stretch-card"> -->
+                      <!-- <div class="card"> -->
+                      <div class="card-body">
+                      <h4 class="card-title">About Your Self</h4>
+                      <p class="card-description"> your interst which will tell your self </p>
+                      <div div class="form-group">
+                        <label for="exampleInputName1"> Goal in Life</label>
+                        <input type="text" class="form-control" name="Goal" id="exampleInputName1" placeholder="I want to become ........">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail3"> Carrer Interest </label>
+                        <input type="email" class="form-control" name="CareInter" id="exampleInputEmail3" placeholder="I am Interest.........">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword4"> Hobbies </label>
+                        <input type="password" class="form-control" name="Hobbies" id="exampleInputPassword4" placeholder="My Hobbies are.....">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender"> Strengths</label>
+                        <input type="password" class="form-control" name="Strenghts" id="exampleInputPassword4" placeholder="I have .....">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender"> Area to Improve</label>
+                        <input type="password" class="form-control" name="Improve" id="exampleInputPassword4" placeholder="I want to Improve ......">
+                      </div>
+                      <div class="form-group">
+                        <label> Your Photo</label>
+                        <div class="input-group col-xs-12">
+                          <input  class="form-control file-upload-info"  placeholder="My Profile Picture ...." type="file">
+                        </div>
+                      </div>
+                      
+                      <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                      <button class="btn btn-light">Cancel</button>
+                      </div>
+                      <!-- </div> -->
+                      <!-- </div> -->
+                    </div>
+                  </form>
               </div>
+            </div>
+          </div>
         </div>
 
 
-        </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-
-          
-          <?php
-            include "fotter.php";
-          ?>
-          <!-- partial -->
-        </div>
-        
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+
+
+      <?php
+      include "fotter.php";
+      ?>
+      <!-- partial -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/todolist.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'></script>
+
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="assets/vendors/chart.js/Chart.min.js"></script>
+  <script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="assets/js/off-canvas.js"></script>
+  <script src="assets/js/hoverable-collapse.js"></script>
+  <script src="assets/js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page -->
+  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/todolist.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'></script>
   <script>
     //DOM elements
     const DOMstrings = {
@@ -447,6 +610,7 @@ if(isset($_POST['submit'])){
       setAnimationType(newAnimationType);
     });
   </script>
-    <!-- End custom js for this page -->
-  </body>
+  <!-- End custom js for this page -->
+</body>
+
 </html>
