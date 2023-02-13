@@ -4,10 +4,13 @@
   session_start();
   $Regno = $_SESSION['Regno'];
   if(empty($Regno)){
+    $some= mysqli_fetch_assoc(mysqli_query($con,"select random from student where regno =$Regno"));
+    if($some['random']!= 'dataupdatedshiva')
+    {header("location:booklet.php");}
+  }
+  else {
     header("location:login.php");
-  }  
-
-
+  }   
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +19,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>SRKR</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
   </head>
   <body>
     <div class="container-scroller">

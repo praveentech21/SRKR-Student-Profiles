@@ -4,7 +4,7 @@ include "link.php";
 
 $regno = $_GET['registration'];
 $random = $_GET['random'];
-$check = mysqli_query($con, "select random from student where regno = '$regno'");
+$check = mysqli_query($con, "select random,sname,email from student where regno = '$regno'");
 $check = mysqli_fetch_assoc($check);
 if (!empty($check) && $check['random'] == $random) {
   if ($check['random'] != "passwordSettedShiva") {
@@ -13,8 +13,12 @@ if (!empty($check) && $check['random'] == $random) {
       $conform = $_POST['conform'];
       if ($conform == $password) {
         $run = mysqli_query($con, "update student set password ='$conform',random = 'passwordSettedShiva' where regno= '$regno'");
+          session_start();
+            $_SESSION['Name'] = $check['sname']; 
+            $_SESSION['Regno'] = $regno;
+            $_SESSION['Email'] = $check['email'];
         echo "<script>alert('You have Setted your password')</script>";
-        header("location:login.php");
+        header("location:index.php");
       } else {
         echo "<script>alert('Password and coform are not same')</script>";
       }
@@ -25,6 +29,7 @@ if (!empty($check) && $check['random'] == $random) {
   }
 } else {
   echo "<script>alert('Dont Act two Smart Bro')</script>";
+  header("location:login.php");
 }
 
 ?>

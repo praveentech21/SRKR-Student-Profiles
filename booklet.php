@@ -39,12 +39,11 @@ if(empty($Regno)){
   $Strenghts = $_POST['Strenghts'];
   $Improve = $_POST['Improve'];
   $Photo = $_POST['photo'];
-  $detailsquery = "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')";
-  $addressquery = "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')";
-  $aboutquery = "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')";
-  $rundetails = mysqli_query($con, $detailsquery);
-  $runabout = mysqli_query($con, $aboutquery);
-  $runaddress = mysqli_query($con, $addressquery);
+mysqli_query($con, "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')");
+mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')");
+mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
+mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= '$regno'");
+
   }
 
 ?>
