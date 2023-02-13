@@ -4,7 +4,8 @@ use PHPMailer\PHPMailer\Exception;
 
 require('PHPMailer/src/Exception.php');
 require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';   
+require 'PHPMailer/src/SMTP.php'; 
+// require 'vendor/autoload.php';  
 
 include("link.php");
 if(isset($_POST['signin'])){
@@ -45,17 +46,16 @@ if(isset($_POST['signup'])){
     $random = randomstring();
     $run = mysqli_query($con, "select sname from student where regno='$regno'");
     $data = mysqli_fetch_assoc($run);
-    $run = mysqli_query($con,"select count(sname) from student where email='$email'");
+    $run = mysqli_query($con,"select count(sname) as someone from student where email='$email'");
     $data1= mysqli_fetch_assoc($run);
     if(!empty($data)){
-        echo "{$data['sname']} You have already registred Plese Login";         
+        echo "{$data['sname']} You have alreday registred Plese Login";
     }
-    elseif($data1['count']!=0){
-        echo "<script>alert('This Email is ALredy Registred')</script>";
+    elseif($data1['someone']!=0){
+        echo "<script>alert('This Email is Alreday Registred')</script>";
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
-        $run = mysqli_query($con, $quary);
         $send = new PHPMailer(true);
         $send->isSMTP();
         $send->Host = 'smtp.gmail.com';
@@ -80,13 +80,9 @@ if(isset($_POST['signup'])){
         <b>SRKR CSD<b>
         ";
         $send->Body = $message;
-        $done = $send->send();
-        if(isset($done)){
-        echo "<script>alert('A link has been Sent to <a href='gmail.com'>Your Email</a> set Password using that link Shiva')</script>";
-        }
-        else {
-            echo "Mail was not sended". $send->ErrorInfo;
-        }
+        $send->send();
+        $run = mysqli_query($con, $quary);
+        if($run) echo "Jai Jai Sri Rama";        
         }    
 }
 

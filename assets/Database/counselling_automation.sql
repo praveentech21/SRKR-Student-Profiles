@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2023 at 06:51 AM
+-- Generation Time: Feb 13, 2023 at 01:32 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -28,22 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `student` (
-  `sname` varchar(75) NOT NULL,
+  `sname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `regno` char(10) NOT NULL,
-  `password` varchar(25) NOT NULL
+  `password` varchar(25) NOT NULL,
+  `random` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`sname`, `email`, `regno`, `password`) VALUES
-('Shiva', 'ravikumar_csd@srkrec.edu.in', '6206', '100'),
-('Shiva', 'ravikumar_csd@srkrec.edu.in', '6207', '1'),
-('Shiva', 'ravikumar_csd@srkrec.edu.in', '6208', '1'),
-('Shiva', 'ravikumar_csd@srkrec.edu.in', '6209', '1'),
-('Shiva', 'ravikumar_csd@srkrec.edu.in', '6210', '1');
 
 --
 -- Indexes for dumped tables
@@ -53,7 +43,8 @@ INSERT INTO `student` (`sname`, `email`, `regno`, `password`) VALUES
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`regno`);
+  ADD PRIMARY KEY (`regno`),
+  ADD UNIQUE KEY `email` (`email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
