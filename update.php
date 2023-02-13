@@ -7,9 +7,13 @@
    if($some['random']!= 'dataupdatedshiva')
    {header("location:booklet.php");}
  }
- 
+ $details= mysqli_fetch_assoc(mysqli_query($con, "select * from std_detls"));
+ $about= mysqli_fetch_assoc(mysqli_query($con, "select * from about"));
+ $address= mysqli_fetch_assoc(mysqli_query($con, "select * from address"));
 
   if (isset($_POST['submit'])) {
+  $sname = $_POST['sname'];
+  $email = $_POST['email'];
   $Department = $_POST['Department'];
   $Batch = $_POST['Batch'];
   $Religion = $_POST['Religion'];
@@ -40,13 +44,13 @@
   $Strenghts = $_POST['Strenghts'];
   $Improve = $_POST['Improve'];
   $Photo = $_POST['photo'];
-mysqli_query($con, "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')");
-mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')");
-mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
-mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= '$Regno'");
+mysqli_query($con,"update student set sname='$sname',email='$email' where regno='$Regno'");
+mysqli_query($con, "update std_detls set DOB='$DOB',Department='$Department',Batch='$Batch',Gender='$Gender',Smobile='$Smobile',Fname='$Fname',Pmobile='$Pmobile',Poccp='$Poccp',Caste='$Caste',Community='$Community',Religion='$Religion',Income='$Income' where Regno='$Regno' ");
+mysqli_query($con, "update about set Tenth='$Tenth',Inter='$Inter',JeeMain='$JeeMain',Rank='$Rank',Admission='$Admission',Category='$Category',Photo='$Photo',Goal='$Goal',CareInter='$CareInter',Hobbies='$Hobbies',Strenghts='$Strenghts',Improve='$Improve' where Regno='$Regno' ");
+mysqli_query($con, "update address set Address='$Address',Aplace='$Aplace',Adistrict='$Adistrict',Astate='$Astate',Pincode='$Pincode',Acity='$Acity' where Regno='$Regno' ");
 echo "<script>alert('Your Data was Submited Sucessfully')</script>";
   }
-
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,9 +92,27 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Name</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="sname" placeholder="<?php echo $_SESSION['Name'];?>  " />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Email</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="email" placeholder="<?php echo $_SESSION['Email'];?>" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Department</label>
                           <div class="col-sm-9">
-                            <select class="form-control" name="Department">
+                            <select class="form-control" name="Department" placeholder="<?php echo $details['Department'];?>" >
                               <option value="CSD">CSD</option>
                               <option value="CSE">CSE</option>
                               <option value="IOT">CSE(IOT)</option>
@@ -110,7 +132,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Batch </label>
                           <div class="col-sm-9">
-                            <select class="form-control" name="Batch">
+                            <select class="form-control" name="Batch" placeholder="<?php echo $details['Batch'];?>" >
                               <option value="2023">2019-2023</option>
                               <option value="2024">2020-2024</option>
                               <option value="2025">2021-2025</option>
@@ -125,7 +147,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Religion</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Religion" />
+                            <input type="text" class="form-control" name="Religion" placeholder="<?php echo $details['Religion'];?>" />
                           </div>
                         </div>
                       </div>
@@ -133,7 +155,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Caste</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Caste" />
+                            <input type="text" class="form-control" name="Caste" placeholder="<?php echo $details['Caste'];?>" />
                           </div>
                         </div>
                       </div>
@@ -143,7 +165,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Date of Birth</label>
                           <div class="col-sm-9">
-                            <input class="form-control" type="date" name="DOB" placeholder="dd/mm/yyyy" />
+                            <input class="form-control" type="date" name="DOB" placeholder="<?php echo $details['DOB'];?>" />
                           </div>
                         </div>
                       </div>
@@ -184,7 +206,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Community</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Community" />
+                            <input type="text" class="form-control" name="Community" placeholder="<?php echo $details['Community'];?>" />
                           </div>
                         </div>
                       </div>
@@ -192,7 +214,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Student Mobile </label>
                           <div class="col-sm-9">
-                            <input type="text" name="Smobile" class="form-control" />
+                            <input type="text" name="Smobile" class="form-control" placeholder="<?php echo $details['Smobile'];?>" />
                           </div>
                         </div>
                       </div>
@@ -202,7 +224,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Father Name </label>
                           <div class="col-sm-9">
-                            <input type="text" name="Fname" class="form-control" />
+                            <input type="text" name="Fname" class="form-control" placeholder="<?php echo $details['Fname'];?>"/>
                           </div>
                         </div>
                       </div>
@@ -210,7 +232,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Parent Mobile</label>
                           <div class="col-sm-9">
-                            <input type="text" name="Pmobile" class="form-control" />
+                            <input type="text" name="Pmobile" class="form-control" placeholder="<?php echo $details['Pmobile'];?>" />
                           </div>
                         </div>
                       </div>
@@ -220,7 +242,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Occupation</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Poccp" />
+                            <input type="text" class="form-control" name="Poccp" laceholder="<?php echo $details['Poccp'];?>" />
                           </div>
                         </div>
                       </div>
@@ -228,7 +250,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Income</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Income" />
+                            <input type="text" class="form-control" name="Income" laceholder="<?php echo $details['Income'];?>" />
                           </div>
                         </div>
                       </div>

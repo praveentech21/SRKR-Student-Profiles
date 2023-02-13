@@ -13,7 +13,7 @@ if(isset($_POST['signin'])){
     $run = mysqli_query($con, $quary);
     $data = mysqli_fetch_assoc($run);
     if(!empty($data)){
-        if($data['random']=="passwordSettedShiva"){
+        if($data['random']=="passwordSettedShiva" || $data['random']=="dataupdatedshiva"){
             if($_POST['password'] != null){
                 if($data['password'] == $_POST['password'] ){
                     session_start();
