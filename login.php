@@ -82,8 +82,13 @@ if(isset($_POST['signup'])){
         $send->Body = $message;
         $send->send();
         $run = mysqli_query($con, $quary);
-        if($run) echo "Jai Jai Sri Rama";        
-        }    
+        if($run) {echo "<script>alert(`Your Account has been Creared Plese Set your password using the link Provided in the mail <button a= 'http://gmail.com/' >Mail </button>`)</script>";
+            header("location:http://gmail.com/");}    
+            else   {
+                echo "You have entered invalide mail";
+            }     
+        }
+          
 }
 
 ?>
