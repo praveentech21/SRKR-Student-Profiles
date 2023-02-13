@@ -13,6 +13,8 @@ if (!empty($check) && $check['random'] == $random) {
       $conform = $_POST['conform'];
       if ($conform == $password) {
         $run = mysqli_query($con, "update student set password ='$conform',random = 'passwordSettedShiva' where regno= '$regno'");
+        echo "<script>alert('You have Setted your password')</script>";
+        header("location:login.php");
       } else {
         echo "<script>alert('Password and coform are not same')</script>";
       }
