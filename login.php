@@ -1,4 +1,5 @@
 <?php
+require 'vendor/autoload.php';
 
 include("link.php");
 if(isset($_POST['signin'])){
@@ -49,9 +50,16 @@ if(isset($_POST['signup'])){
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
+        $mail = new \SendGrid\Mail\Mail();
+        $mail ->setFrom("counselling_admin@srkrec.edu.in","Sagi Rama Krishna Raju Garu Engineering College ");
+        $mail ->setSubject("Set Your Password for the SRKR EC Counselling Form");
+        $mail ->addTo("$email","{$data['sname']}");
+
         $run = mysqli_query($con, $quary);
-        if($run) {echo "<script>alert(`Your Account has been Creared Plese Set your password using the link Provided in the mail <button a= 'http://gmail.com/' >Mail </button>`)</script>";
-            header("location:http://gmail.com/");}    
+        if($run) {
+            // echo "<script>alert(`Your Account has been Creared Plese Set your password using the link Provided in the mail <button a= 'http://gmail.com/' >Mail </button>`)</script>";
+            header("location:setpassword.php?registration=$regno&random=$random");
+            }    
             else   {
                 echo "You have entered invalide mail";
             }     
