@@ -43,6 +43,7 @@ mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMai
 mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
 mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= '$Regno'");
 echo "<script>alert('Your Data was Submited Sucessfully')</script>";
+header("location:index.php");
   }
 
 ?>
