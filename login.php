@@ -1,11 +1,4 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require('PHPMailer/src/Exception.php');
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php'; 
-// require 'vendor/autoload.php';  
 
 include("link.php");
 if(isset($_POST['signin'])){
@@ -56,31 +49,6 @@ if(isset($_POST['signup'])){
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
-        $send = new PHPMailer(true);
-        $send->isSMTP();
-        $send->Host = 'smtp.gmail.com';
-        $send->SMTPAuth = true;
-        $send->Username = 'shiva4bhavani@gmail.com';
-        $send->Password = 'dlbpuawahopqtkox';
-        $send->SMTPSecure = 'ssl';
-        $send->Port = 465;
-        $send->setFrom('shiva4bhavani@gsend.com');
-        $send->addAddress($_POST['email']);
-        $send->isHTML(true);
-        $send->Subject = 'Set Your Password for SRKR Counselling Book ';
-        $message = $message = "Hi mr/mis <b>$sname</b> <br>
-        welcome to SRKR EC Counselling Forms <br>
-        Update Your Recode in your Mobile Using our Site SRKR EC<br>
-        Thanks for Your Interest in SRKREC Counselling Automation Form<br>
-        You have regintered with your register number :<b> $regno</b><br>
-        Setyour Password using our link : srkrec.edu.in/setpassword.php?registration=$regno&random=$random
-<br>
-        Connect with us Friends <br>
-        Thank You <br>
-        <b>SRKR CSD<b>
-        ";
-        $send->Body = $message;
-        $send->send();
         $run = mysqli_query($con, $quary);
         if($run) {echo "<script>alert(`Your Account has been Creared Plese Set your password using the link Provided in the mail <button a= 'http://gmail.com/' >Mail </button>`)</script>";
             header("location:http://gmail.com/");}    
