@@ -1,78 +1,76 @@
 <?php
- include "link.php";
- session_start();
- $Regno = $_SESSION['Regno'];
- if(empty($Regno)){
+include "link.php";
+session_start();
+$Regno = $_SESSION['Regno'];
+if (empty($Regno)) {
   header("location:login.php");
- }
- else{
-  $some= mysqli_fetch_assoc(mysqli_query($con,"select random from student where regno ='$Regno'"));
-  if($some['random'] != 'passwordSettedShiva')
-  {
+} else {
+  $some = mysqli_fetch_assoc(mysqli_query($con, "select random from student where regno ='$Regno'"));
+  if ($some['random'] != 'passwordSettedShiva') {
     echo "<script>alert('Check Your mail and set password')</script>";
     header("location:login.php");
   }
 
- 
+
 
   if (isset($_POST['submit'])) {
-  $Department = $_POST['Department'];
-  $Batch = $_POST['Batch'];
-  $Religion = $_POST['Religion'];
-  $Caste = $_POST['Caste'];
-  $DOB = $_POST['DOB'];
-  $Gender = $_POST['Gender'];
-  $Community = $_POST['Community'];
-  $Smobile = $_POST['Smobile'];
-  $Fname = $_POST['Fname'];
-  $Pmobile = $_POST['Pmobile'];
-  $Poccp = $_POST['Poccp'];
-  $Income = $_POST['Income'];
-  $Address = $_POST['Address'];
-  $Aplace = $_POST['Aplace'];
-  $Acity = $_POST['Acity'];
-  $Adistrict = $_POST['Adistrict'];
-  $Astate = $_POST['Astate'];
-  $Pincode = $_POST['Pincode'];
-  $Tenth = $_POST['Tenth'];
-  $Inter = $_POST['Inter'];
-  $JeeMain = $_POST['JeeMain'];
-  $Rank = $_POST['Rank'];
-  $Admission = $_POST['Admission'];
-  $Category = $_POST['Category'];
-  $Goal = $_POST['Goal'];
-  $CareInter = $_POST['CareInter'];
-  $Hobbies = $_POST['Hobbies'];
-  $Strenghts = $_POST['Strenghts'];
-  $Improve = $_POST['Improve'];
-  $image_name=$_FILES['photo']['name'];
-        $image_tempname=$_FILES['photo']['tmp_name'];
-        $image_error=$_FILES['photo']['error'];
-        if($image_error === 0){
-                $image_extension=pathinfo($image_name,PATHINFO_EXTENSION);
-                $image_extension=strtolower($image_extension);
-                $all_Img_ext = array('jpg','png','jpeg');
-                if(in_array($image_extension,$all_Img_ext)){
-                    $image_new_name=uniqid('IMG-',true).'.'.$image_extension;
-                    $image_uplode_path = 'Upload/'.$image_new_name;
-                    move_uploaded_file($image_tempname,$image_uplode_path);
-                }   
-                else{
-                    echo "You have uploding wrong type data";
-                    header("location:index.php");
-                }
-        }
-        else{
-            echo "Unknow Error Occured in uploding your photo ";
-            header("location:index.php");
-        }
-  $Photo = $image_new_name;
-mysqli_query($con, "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')");
-mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')");
-mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
-mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= '$Regno'");
-echo "<script>alert('Your Data was Submited Sucessfully')</script>";
-header("location:acedemics.php");
+    $Department = $_POST['Department'];
+    $Batch = $_POST['Batch'];
+    $Religion = $_POST['Religion'];
+    $Caste = $_POST['Caste'];
+    $DOB = $_POST['DOB'];
+    $Gender = $_POST['Gender'];
+    $Community = $_POST['Community'];
+    $Smobile = $_POST['Smobile'];
+    $Fname = $_POST['Fname'];
+    $Pmobile = $_POST['Pmobile'];
+    $Poccp = $_POST['Poccp'];
+    $Income = $_POST['Income'];
+    $Address = $_POST['Address'];
+    $Aplace = $_POST['Aplace'];
+    $Acity = $_POST['Acity'];
+    $Adistrict = $_POST['Adistrict'];
+    $Astate = $_POST['Astate'];
+    $Pincode = $_POST['Pincode'];
+    $Tenth = $_POST['Tenth'];
+    $Inter = $_POST['Inter'];
+    $JeeMain = $_POST['JeeMain'];
+    $Rank = $_POST['Rank'];
+    $Admission = $_POST['Admission'];
+    $Category = $_POST['Category'];
+    $Goal = $_POST['Goal'];
+    $CareInter = $_POST['CareInter'];
+    $Hobbies = $_POST['Hobbies'];
+    $Strenghts = $_POST['Strenghts'];
+    $Improve = $_POST['Improve'];
+    $image_name = $_FILES['photo']['name'];
+    $image_tempname = $_FILES['photo']['tmp_name'];
+    $image_error = $_FILES['photo']['error'];
+    if ($image_error === 0) {
+      $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+      $image_extension = strtolower($image_extension);
+      $all_Img_ext = array('jpg', 'png', 'jpeg');
+      if (in_array($image_extension, $all_Img_ext)) {
+        $image_new_name = uniqid('IMG-', true) . '.' . $image_extension;
+        $image_uplode_path = 'Upload/' . $image_new_name;
+        move_uploaded_file($image_tempname, $image_uplode_path);
+      }
+      else {
+        echo "You have uploding wrong type data";
+        header("location:index.php");
+      }
+    }
+    else {
+      echo "Unknow Error Occured in uploding your photo ";
+      header("location:index.php");
+    }
+    $Photo = $image_new_name;
+    mysqli_query($con, "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')");
+    mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')");
+    mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
+    mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= '$Regno'");
+    echo "<script>alert('Your Data was Submited Sucessfully')</script>";
+    header("location:acedemics.php");
   }
 }
 
@@ -96,15 +94,150 @@ header("location:acedemics.php");
 
 <body>
   <div class="container-scroller">
-    <?php
-    include "header.php";
-    ?>
+  <?php
+$data=mysqli_fetch_assoc(mysqli_query($con,"select Photo from about where Regno ='{$_SESSION['Regno']}'"));
+
+?>
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="index.php"><img src="assets/images/logo.png" alt="logo" /></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="nav-profile-img">
+                  <span class="availability-status online"></span>
+                </div>
+                <div class="nav-profile-text">
+                  <p class="mb-1 text-black"><?php echo "{$_SESSION['Name']}" ?></p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-cached me-2 text-success"></i> profile </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-logout me-2 text-primary"></i> Acedimices </a>
+                  <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
-      <?php
-      include "navbar.php";
-      ?>
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                  <span class="login-status online"></span>
+                  <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                  <span class="font-weight-bold mb-2"><?php echo "{$_SESSION['Name']}" ?></span>
+                  <span class="text-secondary text-small"><?php echo "{$_SESSION['Regno']}" ?></span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <span class="menu-title">Home</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Academic</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Academic</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Non Academic</a></li>
+                </ul>
+              </div>
+            </li>            
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">FIRST YEAR</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">SEM -I</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">SEM   -II</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">SECOND YEAR</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">SEM -I</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">SEM   -II</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">THIRD YEAR</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">SEM -I</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">SEM   -II</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">FOURTH YEAR</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">SEM -I</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">SEM   -II</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item sidebar-actions">
+              <span class="nav-link">
+                <div class="border-bottom">
+                  <h6 class="font-weight-normal mb-3">Events</h6>
+                </div>
+                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a Event</button>
+                <div class="mt-4">
+                  <div class="border-bottom">
+                    <p class="text-secondary">Update</p>
+                  </div>
+                  <ul class="gradient-bullet-list mt-4">
+                    <li>Basic</li>
+                    <li>Personal</li>
+                  </ul>
+                </div>
+              </span>
+            </li>
+          </ul>
+        </nav>
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
@@ -112,7 +245,7 @@ header("location:acedemics.php");
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Student Details</h4>
-                  <form class="form-sample" method="post" >
+                  <form class="form-sample" method="post">
                     <p class="card-description">Details</p>
                     <div class="row">
                       <div class="col-md-6">
@@ -182,14 +315,16 @@ header("location:acedemics.php");
                           <div class="col-sm-4">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios1" value="2" checked> Male
+                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios1"
+                                  value="2" checked> Male
                               </label>
                             </div>
                           </div>
                           <div class="col-sm-5">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios2" value="1"> Female 
+                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios2"
+                                  value="1"> Female
                               </label>
                             </div>
                           </div>
@@ -360,13 +495,13 @@ header("location:acedemics.php");
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Admission</label>
                           <div class="col-sm-9">
-                          <select class="form-control" name="Admission" >
-                          <option value="">Mode of Admission</option>
-                          <option value="A cat">Category A</option>
-                          <option value="B cat">Category B</option>
-                          <option value="Spot">Spot Admission</option>
-                          <option value="Management">Management Seat</option>                          
-                          </select>
+                            <select class="form-control" name="Admission">
+                              <option value="">Mode of Admission</option>
+                              <option value="A cat">Category A</option>
+                              <option value="B cat">Category B</option>
+                              <option value="Spot">Spot Admission</option>
+                              <option value="Management">Management Seat</option>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -374,7 +509,7 @@ header("location:acedemics.php");
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Category </label>
                           <div class="col-sm-9">
-                          <input type="text" class="form-control" name="Category" />
+                            <input type="text" class="form-control" name="Category" />
                           </div>
                         </div>
                       </div>
@@ -383,62 +518,68 @@ header("location:acedemics.php");
                       <!-- <div class="col-12 grid-margin stretch-card"> -->
                       <!-- <div class="card"> -->
                       <div class="card-body">
-                      <h4 class="card-title">About Your Self</h4>
-                      <p class="card-description"> your interst which will tell your self </p>
-                      <div div class="form-group">
-                        <label for="exampleInputName1"> Goal in Life</label>
-                        <input type="text" class="form-control" name="Goal" id="exampleInputName1" placeholder="I want to become ........">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail3"> Carrer Interest </label>
-                        <input type="text" class="form-control" name="CareInter" id="exampleInputEmail3" placeholder="I am Interest.........">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword4"> Hobbies </label>
-                        <input type="text" class="form-control" name="Hobbies" id="exampleInputPassword4" placeholder="My Hobbies are.....">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleSelectGender"> Strengths</label>
-                        <input type="text" class="form-control" name="Strenghts" id="exampleInputPassword4" placeholder="I have .....">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleSelectGender"> Area to Improve</label>
-                        <input type="text" class="form-control" name="Improve" id="exampleInputPassword4" placeholder="I want to Improve ......">
-                      </div>
-                      <div class="form-group">
-                        <label> Your Photo</label>
-                        <div class="input-group col-xs-12">
-                          <input  class="form-control file-upload-info" name="photo" placeholder="My Profile Picture ...." type="file">
+                        <h4 class="card-title">About Your Self</h4>
+                        <p class="card-description"> your interst which will tell your self </p>
+                        <div div class="form-group">
+                          <label for="exampleInputName1"> Goal in Life</label>
+                          <input type="text" class="form-control" name="Goal" id="exampleInputName1"
+                            placeholder="I want to become ........">
                         </div>
-                      </div>
-                      
-                      <button type="submit" name="submit" class="btn btn-gradient-primary me-2">Submit</button>
-                      <button class="btn btn-light">Cancel</button>
+                        <div class="form-group">
+                          <label for="exampleInputEmail3"> Carrer Interest </label>
+                          <input type="text" class="form-control" name="CareInter" id="exampleInputEmail3"
+                            placeholder="I am Interest.........">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword4"> Hobbies </label>
+                          <input type="text" class="form-control" name="Hobbies" id="exampleInputPassword4"
+                            placeholder="My Hobbies are.....">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleSelectGender"> Strengths</label>
+                          <input type="text" class="form-control" name="Strenghts" id="exampleInputPassword4"
+                            placeholder="I have .....">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleSelectGender"> Area to Improve</label>
+                          <input type="text" class="form-control" name="Improve" id="exampleInputPassword4"
+                            placeholder="I want to Improve ......">
+                        </div>
+                        <div class="form-group">
+                          <label> Your Photo</label>
+                          <div class="input-group col-xs-12">
+                            <input class="form-control file-upload-info" name="photo"
+                              placeholder="My Profile Picture ...." type="file">
+                          </div>
+                        </div>
+
+                        <button type="submit" name="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
                       </div>
                       <!-- </div> -->
                       <!-- </div> -->
                     </div>
                   </form>
+                </div>
               </div>
             </div>
           </div>
+
+
         </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
 
 
+        <?php
+        include "fotter.php";
+        ?>
+        <!-- partial -->
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:partials/_footer.html -->
 
-
-      <?php
-      include "fotter.php";
-      ?>
-      <!-- partial -->
+      <!-- main-panel ends -->
     </div>
-
-    <!-- main-panel ends -->
-  </div>
-  <!-- page-body-wrapper ends -->
+    <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
