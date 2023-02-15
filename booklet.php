@@ -2,15 +2,17 @@
  include "link.php";
  session_start();
  $Regno = $_SESSION['Regno'];
- if(!empty($Regno)){
-  $some= mysqli_fetch_assoc(mysqli_query($con,"select random from student where regno ='$Regno'"));
-  if($some['random'] != 'dataupdatedshiva')
-  {header("location:booklet.php");}
-
+ if(empty($Regno)){
+  header("location:login.php");
  }
  else{
-  header("location:login.php");
-}
+  $some= mysqli_fetch_assoc(mysqli_query($con,"select random from student where regno ='$Regno'"));
+  if($some['random'] != 'passwordSettedShiva')
+  {
+    echo "<script>alert('Check Your mail and set password')</script>";
+    header("location:login.php");
+  }
+
  
 
   if (isset($_POST['submit'])) {
@@ -51,6 +53,7 @@ mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= 
 echo "<script>alert('Your Data was Submited Sucessfully')</script>";
 header("location:acedemics.php");
   }
+}
 
 ?>
 <!DOCTYPE html>

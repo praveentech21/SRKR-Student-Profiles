@@ -1,3 +1,19 @@
+<?php
+
+  include "link.php";
+  session_start();
+  $Regno = $_SESSION['Regno'];
+  if(!empty($Regno)){
+    $some= mysqli_fetch_assoc(mysqli_query($con,"select random from student where regno ='$Regno'"));
+    if($some['random']!= 'datasetedshiva')
+    {
+      if($some['random'] != 'dataupdatedshiva') header("location:academics.php");
+      else header("location:booklet.php");
+    } 
+  }
+  else header("location:login.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
