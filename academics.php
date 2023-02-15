@@ -5,14 +5,14 @@ session_start();
 $Regno = $_SESSION['Regno'];
 if(!empty($Regno)){
   $some= mysqli_fetch_assoc(mysqli_query($con,"select random from student where regno ='$Regno'"));
-  if($some['random']!= 'dataupdatedshiva')
-  {header("location:booklet.php");}
+  if($some['random']!= 'dataupdatedshiva');
+  // {header("location:booklet.php");}
 }
 else {
   header("location:login.php");
 }   
   if(isset($_POST['submit'])){
-    $BTech	 = $_POST['BTech	'];
+    $BTech= $_POST['BTech'];
     $Difficulties = $_POST['Difficulties'];
     $influnceFriends = $_POST['influnceFriends'];
     $WastingTime = $_POST['WastingTime'];
@@ -20,7 +20,7 @@ else {
     $AttentionClass = $_POST['AttentionClass'];
     $AbsentsClass = $_POST['AbsentsClass'];
     $InterestStudies = $_POST['InterestStudies'];
-    $CareerPlanning	 = $_POST['CareerPlanning	'];
+    $CareerPlanning	 = $_POST['CareerPlanning'];
     $Stress = $_POST['Stress'];
     $RelationShip = $_POST['RelationShip'];
     $Anxiety = $_POST['Anxiety'];
@@ -85,10 +85,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="BTech">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -97,10 +97,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="Difficulties">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -109,10 +109,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="influnceFriends">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -121,10 +121,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="WastingTime">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -140,10 +140,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="Studies">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -152,10 +152,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="AttentionClass">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -164,10 +164,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="AbsentsClass">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -176,10 +176,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="InterestStudies">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -197,10 +197,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="CareerPlanning">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -209,10 +209,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="Stress">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -221,10 +221,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="RelationShip">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -233,10 +233,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="Anxiety">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -245,10 +245,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="Trauma">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -264,10 +264,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="SelfConfidence">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -276,10 +276,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="HealthProblems">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -288,10 +288,10 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="Anger">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
@@ -300,15 +300,15 @@ else {
                       <div class="col-sm-9">
                         <select class="form-control" name="FamilyIssues">
                           <option value="">Select your Chosses</option>
-                          <option value="Not">Not Applicable</option>
-                          <option value="Low">Low</option>
-                          <option value="Moderate">Moderate</option>
                           <option value="High">High</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Low">Low</option>
+                          <option value="Not">Not Applicable</option>
                         </select>
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                    <button type="submit" class="btn btn-gradient-primary me-2" name="submit">Submit</button>
                     <!-- <button class="btn btn-light">Cancel</button> -->
 
                   </div>

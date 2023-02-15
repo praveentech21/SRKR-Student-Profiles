@@ -45,7 +45,28 @@
   $Hobbies = $_POST['Hobbies'];
   $Strenghts = $_POST['Strenghts'];
   $Improve = $_POST['Improve'];
-  $Photo = $_POST['photo'];
+  $image_name=$_FILES['photo']['name'];
+        $image_tempname=$_FILES['photo']['tmp_name'];
+        $image_error=$_FILES['photo']['error'];
+        if($image_error === 0){
+                $image_extension=pathinfo($image_name,PATHINFO_EXTENSION);
+                $image_extension=strtolower($image_extension);
+                $all_Img_ext = array('jpg','png','jpeg');
+                if(in_array($image_extension,$all_Img_ext)){
+                    $image_new_name=uniqid('IMG-',true).'.'.$image_extension;
+                    $image_uplode_path = 'Upload/'.$image_new_name;
+                    move_uploaded_file($image_tempname,$image_uplode_path);
+                }   
+                else{
+                    echo "You have uploding wrong type data";
+                    header("location:index.php");
+                }
+        }
+        else{
+            echo "Unknow Error Occured in uploding your photo ";
+            header("location:index.php");
+        }
+  $Photo = $image_new_name;
 mysqli_query($con, "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')");
 mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')");
 mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
