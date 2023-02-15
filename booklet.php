@@ -2,9 +2,15 @@
  include "link.php";
  session_start();
  $Regno = $_SESSION['Regno'];
- if(empty($Regno)){
-   header("location:login.php");
+ if(!empty($Regno)){
+  $some= mysqli_fetch_assoc(mysqli_query($con,"select random from student where regno ='$Regno'"));
+  if($some['random'] != 'dataupdatedshiva')
+  {header("location:booklet.php");}
+
  }
+ else{
+  header("location:login.php");
+}
  
 
   if (isset($_POST['submit'])) {
@@ -43,7 +49,7 @@ mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMai
 mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
 mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= '$Regno'");
 echo "<script>alert('Your Data was Submited Sucessfully')</script>";
-header("location:index.php");
+header("location:acedemics.php");
   }
 
 ?>
@@ -61,7 +67,7 @@ header("location:index.php");
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
   <link rel="stylesheet" href="assets/css/booklet.css">
-  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="shortcut icon" href="assets/images/favicon.png" />
 </head>
 
 <body>
