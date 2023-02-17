@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/images/favicon.png" />
   </head>
-  <body>
+  <body>  
     <div class="container-scroller">
       <?php
         include "header.php";

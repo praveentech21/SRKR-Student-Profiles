@@ -4,16 +4,37 @@ session_start();
 $Regno = $_SESSION['Regno'];
 if (empty($Regno)) {
   header("location:login.php");
-} else {
+} 
+else{
   $some = mysqli_fetch_assoc(mysqli_query($con, "select random from student where regno ='$Regno'"));
   if ($some['random'] != 'passwordSettedShiva') {
     echo "<script>alert('Check Your mail and set password')</script>";
     header("location:login.php");
   }
+}
+  if (isset($_POST['submit']) && isset($_FILES['photo'])) {
 
-
-
-  if (isset($_POST['submit'])) {
+    $image_name=$_FILES['photo']['name'];
+    $image_tempname=$_FILES['photo']['tmp_name'];
+    $image_error=$_FILES['photo']['error'];
+    if($image_error === 0){
+      $image_extension=pathinfo($image_name,PATHINFO_EXTENSION);
+      $image_extension=strtolower($image_extension);
+      $all_Img_ext = array('jpg','png','jpeg');
+      if(in_array($image_extension,$all_Img_ext)){
+        $image_new_name=uniqid('IMG-',true).'.'.$image_extension;
+        $image_uplode_path = 'Upload/'.$image_new_name;
+        move_uploaded_file($image_tempname,$image_uplode_path);
+      }   
+      else{
+        echo "You have uploding wrong type data";
+        header("location:index.php");
+      }
+    }
+    else{
+        echo "Unknow Error Occured";
+        header("location:index.php");
+    }
     $Department = $_POST['Department'];
     $Batch = $_POST['Batch'];
     $Religion = $_POST['Religion'];
@@ -43,37 +64,15 @@ if (empty($Regno)) {
     $Hobbies = $_POST['Hobbies'];
     $Strenghts = $_POST['Strenghts'];
     $Improve = $_POST['Improve'];
-    $image_name = $_FILES['photo']['name'];
-    $image_tempname = $_FILES['photo']['tmp_name'];
-    $image_error = $_FILES['photo']['error'];
-    if ($image_error === 0) {
-      $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
-      $image_extension = strtolower($image_extension);
-      $all_Img_ext = array('jpg', 'png', 'jpeg');
-      if (in_array($image_extension, $all_Img_ext)) {
-        $image_new_name = uniqid('IMG-', true) . '.' . $image_extension;
-        $image_uplode_path = 'Upload/' . $image_new_name;
-        move_uploaded_file($image_tempname, $image_uplode_path);
-      }
-      else {
-        echo "You have uploding wrong type data";
-        header("location:index.php");
-      }
-    }
-    else {
-      echo "Unknow Error Occured in uploding your photo ";
-      header("location:index.php");
-    }
     $Photo = $image_new_name;
     mysqli_query($con, "insert into std_detls values('$Regno','$DOB','$Department','$Batch','$Gender','$Smobile','$Fname','$Pmobile','$Poccp','$Caste','$Community','$Religion','$Income')");
     mysqli_query($con, "insert into about values('$Regno','$Tenth','$Inter','$JeeMain','$Rank','$Admission','$Category','$Photo','$Goal','$CareInter','$Hobbies','$Strenghts','$Improve')");
     mysqli_query($con, "insert into address values('$Regno','$Address','$Aplace','$Adistrict','$Astate','$Pincode','$Acity')");
     mysqli_query($con, "update student set random = 'dataupdatedshiva' where regno= '$Regno'");
-    echo "<script>alert('Your Data was Submited Sucessfully')</script>";
-    header("location:acedemics.php");
+    header("location:academics.php");
   }
-}
-
+  else echo "Jia Jia Jia Ragu Ragu Rama";
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +95,6 @@ if (empty($Regno)) {
   <div class="container-scroller">
   <?php
 $data=mysqli_fetch_assoc(mysqli_query($con,"select Photo from about where Regno ='{$_SESSION['Regno']}'"));
-
 ?>
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -245,7 +243,7 @@ $data=mysqli_fetch_assoc(mysqli_query($con,"select Photo from about where Regno 
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Student Details</h4>
-                  <form class="form-sample" method="post">
+                  <form class="form-sample" method="post" enctype="multipart/form-data" >
                     <p class="card-description">Details</p>
                     <div class="row">
                       <div class="col-md-6">
@@ -548,12 +546,12 @@ $data=mysqli_fetch_assoc(mysqli_query($con,"select Photo from about where Regno 
                         <div class="form-group">
                           <label> Your Photo</label>
                           <div class="input-group col-xs-12">
-                            <input class="form-control file-upload-info" name="photo"
+                            <input class="form-control file-upload-info" name="photo" id="photo"
                               placeholder="My Profile Picture ...." type="file">
                           </div>
                         </div>
 
-                        <button type="submit" name="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                        <button type="submit" name="submit"  class="btn btn-gradient-primary me-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                       </div>
                       <!-- </div> -->

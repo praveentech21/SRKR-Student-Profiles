@@ -10,7 +10,7 @@
       if($some['random'] != 'dataupdatedshiva') header("location:booklet.php");
       else header("location:academics.php");
     } 
-  }
+  } 
   else header("location:login.php");
 ?>
 

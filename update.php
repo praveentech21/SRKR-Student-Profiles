@@ -12,7 +12,7 @@
     } 
   }
   else header("location:login.php");
-?>
+
  $details= mysqli_fetch_assoc(mysqli_query($con, "select * from std_detls"));
  $about= mysqli_fetch_assoc(mysqli_query($con, "select * from about"));
  $address= mysqli_fetch_assoc(mysqli_query($con, "select * from address"));
