@@ -49,7 +49,21 @@
   $Hobbies = $_POST['Hobbies'];
   $Strenghts = $_POST['Strenghts'];
   $Improve = $_POST['Improve'];
-  $Photo = $_POST['photo'];
+
+  $image_name=$_FILES['photo']['name'];
+  $image_tempname=$_FILES['photo']['tmp_name'];
+  $image_error=$_FILES['photo']['error'];
+  if($image_error === 0){
+    $image_extension=pathinfo($image_name,PATHINFO_EXTENSION);
+    $image_extension=strtolower($image_extension);
+    $all_Img_ext = array('jpg','png','jpeg');
+    if(in_array($image_extension,$all_Img_ext)){
+      $image_new_name=uniqid('IMG-',true).'.'.$image_extension;
+      $image_uplode_path = 'Upload/'.$image_new_name;
+      move_uploaded_file($image_tempname,$image_uplode_path);
+    }   
+  }
+  $Photo = $image_new_name;
 mysqli_query($con,"update student set sname='$sname',email='$email' where regno='$Regno'");
 mysqli_query($con, "update std_detls set DOB='$DOB',Department='$Department',Batch='$Batch',Gender='$Gender',Smobile='$Smobile',Fname='$Fname',Pmobile='$Pmobile',Poccp='$Poccp',Caste='$Caste',Community='$Community',Religion='$Religion',Income='$Income' where Regno='$Regno' ");
 mysqli_query($con, "update about set Tenth='$Tenth',Inter='$Inter',JeeMain='$JeeMain',Rank='$Rank',Admission='$Admission',Category='$Category',Photo='$Photo',Goal='$Goal',CareInter='$CareInter',Hobbies='$Hobbies',Strenghts='$Strenghts',Improve='$Improve' where Regno='$Regno' ");
@@ -93,7 +107,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Student Details</h4>
-                  <form class="form-sample" method="post" >
+                  <form class="form-sample" method="post" enctype="multipart/form-data">
                     <p class="card-description">Details</p>
                     <div class="row">
                       <div class="col-md-6">
@@ -407,7 +421,8 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                       <div class="form-group">
                         <label> Your Photo</label>
                         <div class="input-group col-xs-12">
-                          <input  class="form-control file-upload-info" name="photo" placeholder="My Profile Picture ...." type="file">
+                        <input class="form-control file-upload-info" name="photo" id="photo"
+                              placeholder="My Profile Picture ...." type="file">
                         </div>
                       </div>
                       

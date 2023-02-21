@@ -1,5 +1,7 @@
 <?php
-// require 'vendor/autoload.php';
+require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
+use Mailgun\Mailgun;
 
 include("link.php");
 if(isset($_POST['signin'])){
@@ -50,26 +52,27 @@ if(isset($_POST['signup'])){
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
-        // $mail = new \SendGrid\Mail\Mail();
-        // $mail ->setFrom("counselling_admin@srkrec.edu.in","Sagi Rama Krishna Raju Garu Engineering College ");
-        // $mail ->setSubject("Set Your Password for the SRKR EC Counselling Form");
-        // $mail ->addTo("$email","{$data['sname']}");
-        $to = "ravikumar_csd@srkrec.edu.in";
-        $sub = "Jia Sri Ram";
-        $mess = "HI Shiva ";
-        $from = "counselling_admin@srkrec.edu.in";
-        mail($to,$sub,$mess,'');
+
+        $mgClient = Mailgun::create('23304ba5e6238f25b53abde267fa85ef-ca9eeb88-d51caa2c', 'https://api.mailgun.net/v3/sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org');
+$domain = "sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org";
+$params = array(
+  'from'    => 'counselling_admin@srkrec.edu.in',
+  'to'      => $email,
+  'subject' => 'SRKR Counselling Book',
+  'text'    => 'Amma Bhavani Thali Bhavani!'
+);
+
+# Make the call to the client.
+$mgClient->messages()->send($domain, $params);
 
         $run = mysqli_query($con, $quary);
         if($run) {
-            // echo "<script>alert(`Your Account has been Creared Plese Set your password using the link Provided in the mail <button a= 'http://gmail.com/' >Mail </button>`)</script>";
-            header("location:setpassword.php?registration=$regno&random=$random");
-            }    
+            echo "{$data['sname']} Plese Check Your mail and set your password";
+        }    
             else   {
                 echo "You have entered invalide mail";
             }     
         }
-          
 }
 
 ?>
