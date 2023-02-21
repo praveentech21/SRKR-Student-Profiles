@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 
 include("link.php");
 if(isset($_POST['signin'])){
@@ -50,10 +50,15 @@ if(isset($_POST['signup'])){
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
-        $mail = new \SendGrid\Mail\Mail();
-        $mail ->setFrom("counselling_admin@srkrec.edu.in","Sagi Rama Krishna Raju Garu Engineering College ");
-        $mail ->setSubject("Set Your Password for the SRKR EC Counselling Form");
-        $mail ->addTo("$email","{$data['sname']}");
+        // $mail = new \SendGrid\Mail\Mail();
+        // $mail ->setFrom("counselling_admin@srkrec.edu.in","Sagi Rama Krishna Raju Garu Engineering College ");
+        // $mail ->setSubject("Set Your Password for the SRKR EC Counselling Form");
+        // $mail ->addTo("$email","{$data['sname']}");
+        $to = "ravikumar_csd@srkrec.edu.in";
+        $sub = "Jia Sri Ram";
+        $mess = "HI Shiva ";
+        $from = "counselling_admin@srkrec.edu.in";
+        mail($to,$sub,$mess,'');
 
         $run = mysqli_query($con, $quary);
         if($run) {
