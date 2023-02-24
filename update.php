@@ -114,7 +114,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Name</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="sname" placeholder="<?php echo $_SESSION['Name'];?>  " />
+                            <input type="text" class="form-control" name="sname"  value="<?php echo $_SESSION['Name'];?>  " />
                           </div>
                         </div>
                       </div>
@@ -122,7 +122,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Email</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="email" placeholder="<?php echo $_SESSION['Email'];?>" />
+                            <input type="text" class="form-control" name="email"  value="<?php echo $_SESSION['Email'];?>" />
                           </div>
                         </div>
                       </div>
@@ -132,31 +132,31 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Department</label>
                           <div class="col-sm-9">
-                            <select class="form-control" name="Department" placeholder="<?php echo $details['Department'];?>" >
-                              <option value="CSD">CSD</option>
-                              <option value="CSE">CSE</option>
-                              <option value="IOT">CSE(IOT)</option>
-                              <option value="CSBS">CSBS</option>
-                              <option value="IT">IT</option>
-                              <option value="AIDS">AIDS</option>
-                              <option value="AIML">AIML</option>
-                              <option value="ECE">ECE</option>
-                              <option value="EEE">EEE</option>
-                              <option value="CIVIL">CIVIL</option>
-                              <option value="MECH">MECH</option>
+                            <select class="form-control" name="Department" >
+                              <option <?php if($details['Department']=='CSD'){ echo "selected";}?> value="CSD" >CSD</option>
+                              <option <?php if($details['Department']=='CSE'){ echo "selected";}?> value="CSE">CSE</option>
+                              <option <?php if($details['Department']=='IOT'){ echo "selected";}?> value="IOT">CSE(IOT)</option>
+                              <option <?php if($details['Department']=='CSBS'){ echo "selected";}?> value="CSBS">CSBS</option>
+                              <option <?php if($details['Department']=='IT'){ echo "selected";}?> value="IT">IT</option>
+                              <option <?php if($details['Department']=='AIDS'){ echo "selected";}?> value="AIDS">AIDS</option>
+                              <option <?php if($details['Department']=='AIML'){ echo "selected";}?> value="AIML">AIML</option>
+                              <option <?php if($details['Department']=='ECE'){ echo "selected";}?> value="ECE">ECE</option>
+                              <option <?php if($details['Department']=='EEE'){ echo "selected";}?> value="EEE">EEE</option>
+                              <option <?php if($details['Department']=='CIVIL'){ echo "selected";}?> value="CIVIL">CIVIL</option>
+                              <option <?php if($details['Department']=='MECH'){ echo "selected";}?> value="MECH">MECH</option>
                             </select>
                           </div>
-                        </div>
+                        </div>  
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Batch </label>
                           <div class="col-sm-9">
-                            <select class="form-control" name="Batch" placeholder="<?php echo $details['Batch'];?>" >
-                              <option value="2023">2019-2023</option>
-                              <option value="2024">2020-2024</option>
-                              <option value="2025">2021-2025</option>
-                              <option value="2026">2022-2026</option>
+                            <select class="form-control" name="Batch"  value="<?php echo $details['Batch'];?>" >
+                              <option <?php if($details['Batch']==2023){ echo "selected";}?> value="2023">2019-2023</option>
+                              <option <?php if($details['Batch']==2024){ echo "selected";}?> value="2024">2020-2024</option>
+                              <option <?php if($details['Batch']==2025){ echo "selected";}?> value="2025">2021-2025</option>
+                              <option <?php if($details['Batch']==2026){ echo "selected";}?> value="2026">2022-2026</option>
                             </select>
                           </div>
                         </div>
@@ -167,7 +167,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Religion</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Religion" placeholder="<?php echo $details['Religion'];?>" />
+                            <input type="text" class="form-control" name="Religion"  value="<?php echo $details['Religion'];?>" />
                           </div>
                         </div>
                       </div>
@@ -175,7 +175,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Caste</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Caste" placeholder="<?php echo $details['Caste'];?>" />
+                            <input type="text" class="form-control" name="Caste"  value="<?php echo $details['Caste'];?>" />
                           </div>
                         </div>
                       </div>
@@ -185,7 +185,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Date of Birth</label>
                           <div class="col-sm-9">
-                            <input class="form-control" type="date" name="DOB" placeholder="<?php echo $details['DOB'];?>" />
+                            <input class="form-control" type="date" name="DOB"  value="<?php echo $details['DOB'];?>" />
                           </div>
                         </div>
                       </div>
@@ -195,14 +195,14 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                           <div class="col-sm-4">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios1" value="2" checked> Male
+                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios1" value="2" <?php if($details['Gender']==2){ echo "checked";}?>> Male
                               </label>
                             </div>
                           </div>
                           <div class="col-sm-5">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios2" value="1"> Female 
+                                <input type="radio" class="form-check-input" name="Gender" id="membershipRadios2" value="1" <?php if($details['Gender']==1){ echo "checked";}?>> Female 
                               </label>
                             </div>
                           </div>
@@ -214,7 +214,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <label>File upload</label>
                         <input type="file" name="img[]" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <input type="text" class="form-control file-upload-info" disabled  value="Upload Image">
                           <span class="input-group-append">
                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                           </span>
@@ -226,7 +226,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Community</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Community" placeholder="<?php echo $details['Community'];?>" />
+                            <input type="text" class="form-control" name="Community"  value="<?php echo $details['Community'];?>" />
                           </div>
                         </div>
                       </div>
@@ -234,7 +234,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Student Mobile </label>
                           <div class="col-sm-9">
-                            <input type="text" name="Smobile" class="form-control" placeholder="<?php echo $details['Smobile'];?>" />
+                            <input type="text" name="Smobile" class="form-control"  value="<?php echo $details['Smobile'];?>" />
                           </div>
                         </div>
                       </div>
@@ -244,7 +244,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Father Name </label>
                           <div class="col-sm-9">
-                            <input type="text" name="Fname" class="form-control" placeholder="<?php echo $details['Fname'];?>"/>
+                            <input type="text" name="Fname" class="form-control"  value="<?php echo $details['Fname'];?>"/>
                           </div>
                         </div>
                       </div>
@@ -252,7 +252,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Parent Mobile</label>
                           <div class="col-sm-9">
-                            <input type="text" name="Pmobile" class="form-control" placeholder="<?php echo $details['Pmobile'];?>" />
+                            <input type="text" name="Pmobile" class="form-control"  value="<?php echo $details['Pmobile'];?>" />
                           </div>
                         </div>
                       </div>
@@ -262,7 +262,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label"> Occupation</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Poccp" laceholder="<?php echo $details['Poccp'];?>" />
+                            <input type="text" class="form-control" name="Poccp" value="<?php echo $details['Poccp'];?>" />
                           </div>
                         </div>
                       </div>
@@ -270,7 +270,7 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Income</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Income" laceholder="<?php echo $details['Income'];?>" />
+                            <input type="text" class="form-control" name="Income" value="<?php echo $details['Income'];?>" />
                           </div>
                         </div>
                       </div>
@@ -400,29 +400,29 @@ echo "<script>alert('Your Data was Submited Sucessfully')</script>";
                       <p class="card-description"> your interst which will tell your self </p>
                       <div div class="form-group">
                         <label for="exampleInputName1"> Goal in Life</label>
-                        <input type="text" class="form-control" name="Goal" id="exampleInputName1" placeholder="I want to become ........">
+                        <input type="text" class="form-control" name="Goal" id="exampleInputName1"  value="I want to become ........">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail3"> Carrer Interest </label>
-                        <input type="text" class="form-control" name="CareInter" id="exampleInputEmail3" placeholder="I am Interest.........">
+                        <input type="text" class="form-control" name="CareInter" id="exampleInputEmail3"  value="I am Interest.........">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword4"> Hobbies </label>
-                        <input type="text" class="form-control" name="Hobbies" id="exampleInputPassword4" placeholder="My Hobbies are.....">
+                        <input type="text" class="form-control" name="Hobbies" id="exampleInputPassword4"  value="My Hobbies are.....">
                       </div>
                       <div class="form-group">
                         <label for="exampleSelectGender"> Strengths</label>
-                        <input type="text" class="form-control" name="Strenghts" id="exampleInputPassword4" placeholder="I have .....">
+                        <input type="text" class="form-control" name="Strenghts" id="exampleInputPassword4"  value="I have .....">
                       </div>
                       <div class="form-group">
                         <label for="exampleSelectGender"> Area to Improve</label>
-                        <input type="text" class="form-control" name="Improve" id="exampleInputPassword4" placeholder="I want to Improve ......">
+                        <input type="text" class="form-control" name="Improve" id="exampleInputPassword4"  value="I want to Improve ......">
                       </div>
                       <div class="form-group">
                         <label> Your Photo</label>
                         <div class="input-group col-xs-12">
                         <input class="form-control file-upload-info" name="photo" id="photo"
-                              placeholder="My Profile Picture ...." type="file">
+                               value="My Profile Picture ...." type="file">
                         </div>
                       </div>
                       

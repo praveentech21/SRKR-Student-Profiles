@@ -52,14 +52,14 @@ if(isset($_POST['signup'])){
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
-
+        $message = "HI $sname set Your Password https://setpassword.php?registration=$regno&random=$random";
         $mgClient = Mailgun::create('23304ba5e6238f25b53abde267fa85ef-ca9eeb88-d51caa2c', 'https://api.mailgun.net/v3/sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org');
 $domain = "sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org";
 $params = array(
   'from'    => 'counselling_admin@srkrec.edu.in',
   'to'      => $email,
   'subject' => 'SRKR Counselling Book',
-  'text'    => 'Amma Bhavani Thali Bhavani!'
+  'text'    => $message
 );
 
 # Make the call to the client.
@@ -67,7 +67,7 @@ $mgClient->messages()->send($domain, $params);
 
         $run = mysqli_query($con, $quary);
         if($run) {
-            echo "{$data['sname']} Plese Check Your mail and set your password";
+            echo "$sname Plese Check Your mail and set your password";
         }    
             else   {
                 echo "You have entered invalide mail";
