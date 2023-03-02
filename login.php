@@ -53,7 +53,7 @@ if(isset($_POST['signup'])){
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
 
-        $mgClient = Mailgun::create('23304ba5e6238f25b53abde267fa85ef-ca9eeb88-d51caa2c', 'https://api.mailgun.net/v3/sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org');
+        $mgClient = Mailgun::create('e4df0f84769edac3ff31406eaf638661', 'https://api.mailgun.net/v3/sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org');
 $domain = "sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org";
 $params = array(
   'from'    => 'counselling_admin@srkrec.edu.in',
