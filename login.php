@@ -1,15 +1,14 @@
 <?php
 require 'vendor/autoload.php';
-require_once 'vendor/autoload.php';
 use Mailgun\Mailgun;
-
 include("link.php");
 if(isset($_POST['signin'])){
+    echo "Jia Jia Shankara";
     $quary = "select * from student where regno ='{$_POST['regno']}' ";
     $run = mysqli_query($con, $quary);
     $data = mysqli_fetch_assoc($run);
     if(!empty($data)){
-        if($data['random']=="datasetedshiva" || $data['random']=="dataupdatedshiva"){
+        if($data['random']=="datasetedshiva" || $data['random']=="passwordSettedShiva" || $data['random']=="dataupdatedshiva"){
             if($_POST['password'] != null){
                 if($data['password'] == $_POST['password'] ){
                     session_start();
@@ -36,6 +35,7 @@ if(isset($_POST['signin'])){
 }
 
 if(isset($_POST['signup'])){
+    echo "Jia Jia Shankara";
     $sname = $_POST['sname'];
     $email= strtolower($_POST['email']);
     $regno = $_POST['regno'];
@@ -52,27 +52,20 @@ if(isset($_POST['signup'])){
     }
     else{       
         $quary = "insert into student (sname,email,regno,random) values('$sname','$email','$regno','$random')";
-
-        $mgClient = Mailgun::create('e4df0f84769edac3ff31406eaf638661', 'https://api.mailgun.net/v3/sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org');
-$domain = "sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org";
-$params = array(
-  'from'    => 'counselling_admin@srkrec.edu.in',
-  'to'      => $email,
-  'subject' => 'SRKR Counselling Book',
-  'text'    => 'Amma Bhavani Thali Bhavani!'
-);
-
-# Make the call to the client.
-$mgClient->messages()->send($domain, $params);
-
         $run = mysqli_query($con, $quary);
-        if($run) {
-            echo "{$data['sname']} Plese Check Your mail and set your password";
-        }    
-            else   {
-                echo "You have entered invalide mail";
-            }     
-        }
+header("location:setpassword.php?registration=$regno&random=$random");
+
+$mgClient = new Mailgun('e4df0f84769edac3ff31406eaf638661');
+$domain = "https://api.mailgun.net/v3/sandbox491d602c5ea04bf18f0892e8e0676dc2.mailgun.org";
+# Make the call to the client.
+$result = $mgClient->sendMessage($domain, array(
+	'from'	=> 'Excited User <mailgun@YOUR_DOMAIN_NAME>',
+	'to'	=> 'Baz <YOU@YOUR_DOMAIN_NAME>',
+	'subject' => 'Hello',
+	'text'	=> 'Testing some Mailgun awesomness!'
+));     
+    }
+
 }
 
 ?>
