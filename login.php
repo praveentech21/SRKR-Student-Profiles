@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 include("link.php");
 if(isset($_POST['signin'])){
